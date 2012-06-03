@@ -1,0 +1,15 @@
+{% extends 'TriebawerkeSkilleratorBundle::layout.html.twig' %}
+
+{% block title %}Symfony - Welcome{% endblock %}
+
+{% block content_header '' %}
+
+{% block content %}
+    <h1>Welcome to the Skillerator</h1>
+
+    <p>Start managing your skills!</p>
+
+    <a class="symfony-button-grey" href="{{ path('_home_skillerator') }}">What is a skillerator?</a>
+    <a class="symfony-button-grey" href="{{ path('_home_contact') }}">Contact</a></br>
+    <a class="symfony-button-green" href="{{ path('_skills') }}">Skills</a>
+{% endblock %}

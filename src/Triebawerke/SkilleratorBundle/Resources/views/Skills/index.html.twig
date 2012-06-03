@@ -1,0 +1,21 @@
+{% extends "TriebawerkeSkilleratorBundle::layout.html.twig" %}
+
+{% block title "Symfony - Demos" %}
+
+{% block content %}
+    <h1>Skills</h1>
+    <ul id="demo-list">
+        <li><a href="{{ path('_skills_new') }}">new Skill</a></li>
+        <li><a href="{{ path('_demo_secured_hello', {'name': 'World'}) }}">Access the secured area</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{ path('_demo_login') }}">Go to the login page</a></li>
+        {# <li><a href="{{ path('_demo_contact') }}">Send a Message</a></li> #}
+    </ul>
+
+    <ul>
+    {% for skill in skills %}
+        <li>{{ skill.name }}</li>
+        <li>{{ skill.description }}</li>
+    {% else %}
+        <li>No skills found</li>
+    {% endfor %}
+</ul>
+{% endblock %}

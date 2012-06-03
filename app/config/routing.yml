@@ -1,0 +1,25 @@
+# Internal routing configuration to handle ESI
+#_internal:
+#   resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
+#   prefix:   /_internal
+
+
+_welcome:
+    pattern:  /
+    defaults: { _controller: TriebawerkeSkilleratorBundle:Home:index }
+    
+_skills:
+    resource: "@TriebawerkeSkilleratorBundle/Controller/SkillsController.php"
+    type:     annotation
+    prefix:   /skills
+    
+_home:
+    resource: "@TriebawerkeSkilleratorBundle/Controller/HomeController.php"
+    type:     annotation
+    prefix:   /home
+#    
+#_skillerator_secured:
+#    resource: "@TriebawerkeSkilleratorBundle/Controller/SecuredController.php"
+#    type:     annotation
+#    
+    

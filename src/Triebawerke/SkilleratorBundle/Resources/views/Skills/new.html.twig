@@ -1,0 +1,14 @@
+{% extends "TriebawerkeSkilleratorBundle::layout.html.twig" %}
+
+{% block title "Symfony - Demos" %}
+
+{% block content_header '' %}
+
+{% block content %}
+    <h1>Enter new skills</h1>
+    <form action="{{ path('_skills_new') }}" method="post" {{ form_enctype(form) }}>
+      {{ form_widget(form) }}
+      <input type="submit" />
+    </form>
+
+{% endblock %}
