@@ -153,8 +153,8 @@ class appdevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             }
 
             // _skills_create
-            if (0 === strpos($pathinfo, '/skills/create') && preg_match('#^/skills/create/(?P<id>[^/]+?)$#s', $pathinfo, $matches)) {
-                return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Triebawerke\\SkilleratorBundle\\Controller\\SkillsController::createAction',)), array('_route' => '_skills_create'));
+            if ($pathinfo === '/skills/create') {
+                return array (  '_controller' => 'Triebawerke\\SkilleratorBundle\\Controller\\SkillsController::createAction',  '_route' => '_skills_create',);
             }
 
             // _skills_new
@@ -162,6 +162,84 @@ class appdevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return array (  '_controller' => 'Triebawerke\\SkilleratorBundle\\Controller\\SkillsController::newAction',  '_route' => '_skills_new',);
             }
 
+            // _skill_edit
+            if (preg_match('#^/skills/(?P<id>[^/]+?)/edit$#s', $pathinfo, $matches)) {
+                return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Triebawerke\\SkilleratorBundle\\Controller\\SkillsController::editAction',)), array('_route' => '_skill_edit'));
+            }
+
+            // _skills_update
+            if (preg_match('#^/skills/(?P<id>[^/]+?)/update$#s', $pathinfo, $matches)) {
+                return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Triebawerke\\SkilleratorBundle\\Controller\\SkillsController::updateAction',)), array('_route' => '_skills_update'));
+            }
+
+            // _skills_edit
+            if (0 === strpos($pathinfo, '/skills/edit') && preg_match('#^/skills/edit/(?P<id>[^/]+?)$#s', $pathinfo, $matches)) {
+                return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Triebawerke\\SkilleratorBundle\\Controller\\SkillsController::editAction',)), array('_route' => '_skills_edit'));
+            }
+
+            // _skills_delete
+            if (0 === strpos($pathinfo, '/skills/delete') && preg_match('#^/skills/delete/(?P<id>[^/]+?)$#s', $pathinfo, $matches)) {
+                return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'TriebawerkeSkilleratorBundle:kills:delete',)), array('_route' => '_skills_delete'));
+            }
+
+        }
+
+        // _skills_show
+        if (preg_match('#^/(?P<id>[^/]+?)/show$#s', $pathinfo, $matches)) {
+            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Triebawerke\\SkilleratorBundle\\Controller\\SkillsController::showAction',)), array('_route' => '_skills_show'));
+        }
+
+        // _level
+        if (rtrim($pathinfo, '/') === '/level') {
+            if (substr($pathinfo, -1) !== '/') {
+                return $this->redirect($pathinfo.'/', '_level');
+            }
+            return array (  '_controller' => 'Triebawerke\\SkilleratorBundle\\Controller\\LevelController::indexAction',  '_route' => '_level',);
+        }
+
+        // _level_update
+        if (0 === strpos($pathinfo, '/level/update') && preg_match('#^/level/update/(?P<id>[^/]+?)$#s', $pathinfo, $matches)) {
+            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Triebawerke\\SkilleratorBundle\\Controller\\LevelController::updateAction',)), array('_route' => '_level_update'));
+        }
+
+        // _level_create
+        if (0 === strpos($pathinfo, '/level/create') && preg_match('#^/level/create/(?P<id>[^/]+?)$#s', $pathinfo, $matches)) {
+            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Triebawerke\\SkilleratorBundle\\Controller\\LevelController::createAction',)), array('_route' => '_level_create'));
+        }
+
+        // certificate
+        if ($pathinfo === '/certificate') {
+            return array (  '_controller' => 'Triebawerke\\SkilleratorBundle\\Controller\\CertificateController::indexAction',  '_route' => 'certificate',);
+        }
+
+        // certificate_show
+        if (0 === strpos($pathinfo, '/certificate/show') && preg_match('#^/certificate/show/(?P<id>[^/]+?)$#s', $pathinfo, $matches)) {
+            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Triebawerke\\SkilleratorBundle\\Controller\\CertificateController::showAction',)), array('_route' => 'certificate_show'));
+        }
+
+        // certificate_edit
+        if (0 === strpos($pathinfo, '/certificate/edit') && preg_match('#^/certificate/edit/(?P<id>[^/]+?)$#s', $pathinfo, $matches)) {
+            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Triebawerke\\SkilleratorBundle\\Controller\\CertificateController::editAction',)), array('_route' => 'certificate_edit'));
+        }
+
+        // certificate_update
+        if (0 === strpos($pathinfo, '/certificate/update') && preg_match('#^/certificate/update/(?P<id>[^/]+?)$#s', $pathinfo, $matches)) {
+            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Triebawerke\\SkilleratorBundle\\Controller\\CertificateController::updateAction',)), array('_route' => 'certificate_update'));
+        }
+
+        // certificate_new
+        if ($pathinfo === '/certificate/new') {
+            return array (  '_controller' => 'Triebawerke\\SkilleratorBundle\\Controller\\CertificateController::newAction',  '_route' => 'certificate_new',);
+        }
+
+        // certificate_create
+        if ($pathinfo === '/certificate/create') {
+            return array (  '_controller' => 'Triebawerke\\SkilleratorBundle\\Controller\\CertificateController::createAction',  '_route' => 'certificate_create',);
+        }
+
+        // certificate_delete
+        if (0 === strpos($pathinfo, '/certificate/delete') && preg_match('#^/certificate/delete/(?P<id>[^/]+?)$#s', $pathinfo, $matches)) {
+            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Triebawerke\\SkilleratorBundle\\Controller\\CertificateController::deleteAction',)), array('_route' => 'certificate_delete'));
         }
 
         if (0 === strpos($pathinfo, '/home')) {

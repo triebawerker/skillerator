@@ -1,0 +1,12 @@
+{% extends "TriebawerkeSkilleratorBundle::layout.html.twig" %}
+
+{% block title "Skillerator" %}
+
+{% block content %}
+    <h1>Update skill</h1>
+    <form action="{{ path('_skills_update') }}" method="post" {{ form_enctype(form) }}> 
+      {{ form_widget(form) }} 
+      <input type="submit" />
+    </form>
+
+{% endblock %}

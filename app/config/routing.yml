@@ -5,18 +5,74 @@
 
 
 _welcome:
-    pattern:  /
-    defaults: { _controller: TriebawerkeSkilleratorBundle:Home:index }
+    pattern:      /
+    defaults:     { _controller: TriebawerkeSkilleratorBundle:Home:index }
     
 _skills:
-    resource: "@TriebawerkeSkilleratorBundle/Controller/SkillsController.php"
-    type:     annotation
-    prefix:   /skills
+    resource:     "@TriebawerkeSkilleratorBundle/Controller/SkillsController.php"
+    type:         annotation
+    prefix:       /skills
+
+_skills_update:
+    pattern:      /skills/{id}/update
+    defaults:     { _controller: TriebawerkeSkilleratorBundle:Skills:update }
+
+_skills_show:
+    pattern:      /{id}/show
+    defaults:     { _controller: TriebawerkeSkilleratorBundle:Skills:show }
+
+_skills_edit:
+    pattern:      /skills/edit/{id}
+    defaults:     { _controller: TriebawerkeSkilleratorBundle:Skills:edit }      
+
+_skills_delete:
+    pattern:      /skills/delete/{id}
+    defaults:     { _controller: TriebawerkeSkilleratorBundle:kills:delete}
+  
+_level:
+    pattern:      /level/
+    defaults:     { _controller: TriebawerkeSkilleratorBundle:Level:index}
+
+_level_update:
+    pattern:      /level/update/{id}
+    defaults:     { _controller: TriebawerkeSkilleratorBundle:Level:update}
+        
+_level_create:
+    pattern:      /level/create/{id}
+    defaults:     { _controller: TriebawerkeSkilleratorBundle:Level:create}   
+        
+certificate:
+    pattern:      /certificate
+    defaults:     { _controller: TriebawerkeSkilleratorBundle:Certificate:index}
+
+certificate_show:
+    pattern:      /certificate/show/{id}
+    defaults:     { _controller: TriebawerkeSkilleratorBundle:Certificate:show}  
+  
+certificate_edit:
+    pattern:      /certificate/edit/{id}
+    defaults:     { _controller: TriebawerkeSkilleratorBundle:Certificate:edit}
     
+certificate_update:
+    pattern:      /certificate/update/{id}
+    defaults:     { _controller: TriebawerkeSkilleratorBundle:Certificate:update}    
+
+certificate_new:
+    pattern:      /certificate/new
+    defaults:     { _controller: TriebawerkeSkilleratorBundle:Certificate:new}
+
+certificate_create:
+    pattern:      /certificate/create
+    defaults:     { _controller: TriebawerkeSkilleratorBundle:Certificate:create} 
+
+certificate_delete:
+    pattern:      /certificate/delete/{id}
+    defaults:     { _controller: TriebawerkeSkilleratorBundle:Certificate:delete}
+        
 _home:
-    resource: "@TriebawerkeSkilleratorBundle/Controller/HomeController.php"
-    type:     annotation
-    prefix:   /home
+    resource:     "@TriebawerkeSkilleratorBundle/Controller/HomeController.php"
+    type:         annotation
+    prefix:       /home
 #    
 #_skillerator_secured:
 #    resource: "@TriebawerkeSkilleratorBundle/Controller/SecuredController.php"

@@ -36,6 +36,21 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
        '_skills' => true,
        '_skills_create' => true,
        '_skills_new' => true,
+       '_skill_edit' => true,
+       '_skills_update' => true,
+       '_skills_show' => true,
+       '_skills_edit' => true,
+       '_skills_delete' => true,
+       '_level' => true,
+       '_level_update' => true,
+       '_level_create' => true,
+       'certificate' => true,
+       'certificate_show' => true,
+       'certificate_edit' => true,
+       'certificate_update' => true,
+       'certificate_new' => true,
+       'certificate_create' => true,
+       'certificate_delete' => true,
        '_home' => true,
        '_home_skillerator' => true,
        '_home_contact' => true,
@@ -169,12 +184,87 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
 
     private function get_skills_createRouteInfo()
     {
-        return array(array (  0 => 'id',), array (  '_controller' => 'Triebawerke\\SkilleratorBundle\\Controller\\SkillsController::createAction',), array (), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  1 =>   array (    0 => 'text',    1 => '/skills/create',  ),));
+        return array(array (), array (  '_controller' => 'Triebawerke\\SkilleratorBundle\\Controller\\SkillsController::createAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/skills/create',  ),));
     }
 
     private function get_skills_newRouteInfo()
     {
         return array(array (), array (  '_controller' => 'Triebawerke\\SkilleratorBundle\\Controller\\SkillsController::newAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/skills/new',  ),));
+    }
+
+    private function get_skill_editRouteInfo()
+    {
+        return array(array (  0 => 'id',), array (  '_controller' => 'Triebawerke\\SkilleratorBundle\\Controller\\SkillsController::editAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/edit',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  2 =>   array (    0 => 'text',    1 => '/skills',  ),));
+    }
+
+    private function get_skills_updateRouteInfo()
+    {
+        return array(array (  0 => 'id',), array (  '_controller' => 'Triebawerke\\SkilleratorBundle\\Controller\\SkillsController::updateAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/update',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  2 =>   array (    0 => 'text',    1 => '/skills',  ),));
+    }
+
+    private function get_skills_showRouteInfo()
+    {
+        return array(array (  0 => 'id',), array (  '_controller' => 'Triebawerke\\SkilleratorBundle\\Controller\\SkillsController::showAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/show',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),));
+    }
+
+    private function get_skills_editRouteInfo()
+    {
+        return array(array (  0 => 'id',), array (  '_controller' => 'Triebawerke\\SkilleratorBundle\\Controller\\SkillsController::editAction',), array (), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  1 =>   array (    0 => 'text',    1 => '/skills/edit',  ),));
+    }
+
+    private function get_skills_deleteRouteInfo()
+    {
+        return array(array (  0 => 'id',), array (  '_controller' => 'TriebawerkeSkilleratorBundle:kills:delete',), array (), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  1 =>   array (    0 => 'text',    1 => '/skills/delete',  ),));
+    }
+
+    private function get_levelRouteInfo()
+    {
+        return array(array (), array (  '_controller' => 'Triebawerke\\SkilleratorBundle\\Controller\\LevelController::indexAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/level/',  ),));
+    }
+
+    private function get_level_updateRouteInfo()
+    {
+        return array(array (  0 => 'id',), array (  '_controller' => 'Triebawerke\\SkilleratorBundle\\Controller\\LevelController::updateAction',), array (), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  1 =>   array (    0 => 'text',    1 => '/level/update',  ),));
+    }
+
+    private function get_level_createRouteInfo()
+    {
+        return array(array (  0 => 'id',), array (  '_controller' => 'Triebawerke\\SkilleratorBundle\\Controller\\LevelController::createAction',), array (), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  1 =>   array (    0 => 'text',    1 => '/level/create',  ),));
+    }
+
+    private function getcertificateRouteInfo()
+    {
+        return array(array (), array (  '_controller' => 'Triebawerke\\SkilleratorBundle\\Controller\\CertificateController::indexAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/certificate',  ),));
+    }
+
+    private function getcertificate_showRouteInfo()
+    {
+        return array(array (  0 => 'id',), array (  '_controller' => 'Triebawerke\\SkilleratorBundle\\Controller\\CertificateController::showAction',), array (), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  1 =>   array (    0 => 'text',    1 => '/certificate/show',  ),));
+    }
+
+    private function getcertificate_editRouteInfo()
+    {
+        return array(array (  0 => 'id',), array (  '_controller' => 'Triebawerke\\SkilleratorBundle\\Controller\\CertificateController::editAction',), array (), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  1 =>   array (    0 => 'text',    1 => '/certificate/edit',  ),));
+    }
+
+    private function getcertificate_updateRouteInfo()
+    {
+        return array(array (  0 => 'id',), array (  '_controller' => 'Triebawerke\\SkilleratorBundle\\Controller\\CertificateController::updateAction',), array (), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  1 =>   array (    0 => 'text',    1 => '/certificate/update',  ),));
+    }
+
+    private function getcertificate_newRouteInfo()
+    {
+        return array(array (), array (  '_controller' => 'Triebawerke\\SkilleratorBundle\\Controller\\CertificateController::newAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/certificate/new',  ),));
+    }
+
+    private function getcertificate_createRouteInfo()
+    {
+        return array(array (), array (  '_controller' => 'Triebawerke\\SkilleratorBundle\\Controller\\CertificateController::createAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/certificate/create',  ),));
+    }
+
+    private function getcertificate_deleteRouteInfo()
+    {
+        return array(array (  0 => 'id',), array (  '_controller' => 'Triebawerke\\SkilleratorBundle\\Controller\\CertificateController::deleteAction',), array (), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  1 =>   array (    0 => 'text',    1 => '/certificate/delete',  ),));
     }
 
     private function get_homeRouteInfo()

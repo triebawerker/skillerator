@@ -41,43 +41,39 @@ class __TwigTemplate_03c7a2e36eb84237d6b1031c472aa4d3 extends Twig_Template
         // line 8
         echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("_skills_new"), "html", null, true);
         echo "\">new Skill</a></li>
-        <li><a href=\"";
-        // line 9
-        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("_demo_secured_hello", array("name" => "World")), "html", null, true);
-        echo "\">Access the secured area</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href=\"";
-        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("_demo_login"), "html", null, true);
-        echo "\">Go to the login page</a></li>
-        ";
-        // line 11
-        echo "    </ul>
+    </ul>
 
     <ul>
     ";
-        // line 14
+        // line 12
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable($this->getContext($context, "skills"));
         $context['_iterated'] = false;
         foreach ($context['_seq'] as $context["_key"] => $context["skill"]) {
-            // line 15
+            // line 13
             echo "        <li>";
             echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, "skill"), "name"), "html", null, true);
             echo "</li>
         <li>";
-            // line 16
+            // line 14
             echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, "skill"), "description"), "html", null, true);
             echo "</li>
+        <li><a href=\"";
+            // line 15
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("_skills_edit", array("id" => $this->getAttribute($this->getContext($context, "skill"), "id"))), "html", null, true);
+            echo "\">edit</a></li>
     ";
             $context['_iterated'] = true;
         }
         if (!$context['_iterated']) {
-            // line 18
+            // line 17
             echo "        <li>No skills found</li>
     ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['skill'], $context['_parent'], $context['loop']);
         $context = array_merge($_parent, array_intersect_key($context, $_parent));
-        // line 20
+        // line 19
         echo "</ul>
 ";
     }
@@ -94,6 +90,6 @@ class __TwigTemplate_03c7a2e36eb84237d6b1031c472aa4d3 extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  79 => 20,  72 => 18,  65 => 16,  60 => 15,  55 => 14,  50 => 11,  44 => 9,  40 => 8,  36 => 6,  33 => 5,  27 => 3,);
+        return array (  75 => 19,  68 => 17,  61 => 15,  57 => 14,  52 => 13,  47 => 12,  40 => 8,  36 => 6,  33 => 5,  27 => 3,);
     }
 }

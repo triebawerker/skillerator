@@ -1,0 +1,14 @@
+{% extends "TriebawerkeSkilleratorBundle::layout.html.twig" %}
+
+{% block title "Symfony - Demos" %}
+
+{% block content %}
+    <h1>Level</h1>
+    {% for level in levels %}
+        <li>{{ level.name }}</li>
+        <li>{{ level.description }}</li>
+        <li><a href="{{ path('_level_update', {'id': level.id }) }}">update</a></li>
+    {% else %}
+        <li>No skills found</li>
+    {% endfor %}
+{% endblock %}

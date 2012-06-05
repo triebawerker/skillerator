@@ -6,21 +6,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Triebawerke\SkilleratorBundle\Entity\Skill;
+use Triebawerke\SkilleratorBundle\Form\CertificateType;
 
-// these import the "@Route" and "@Template" annotations
+// these import the "@Route" and "@Template" and "@Method" annotations
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
 class SkillsController extends Controller
 {
- 
-    private $skill;
-    
-    public function __construct()
-    {
-        $this->skill = new Skill();
-    }
-    
+   
     /**
      * @Route("/", name="_skills")
      * @Template()
@@ -32,19 +27,54 @@ class SkillsController extends Controller
                        ->findAll();
         return array('skills' => $skills);
     }
-
+    
     /**
-     * @Route("/create/{id}", name="_skills_create")
+     * Finds and displays a Certificate entity.
+     *
+     * @Route("/{id}/show", name="_skills_show")
      * @Template()
      */
-    public function createAction($id)
+    public function showAction($id)
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+
+        $skill = $em->getRepository('TriebawerkeSkilleratorBundle:Skill')->find($id);
+
+        if (!$skill) {
+            throw $this->createNotFoundException('Unable to find skill entity.');
+        }
+
+        $deleteForm = $this->createDeleteForm($id);
+
+        return array(
+            'entity'      => $skill,
+            'delete_form' => $deleteForm->createView(),        );
+    }
+
+    /**
+     * @Route("/create", name="_skills_create")
+     * @Template()
+     */
+    public function createAction()
     { 
-      $skills = $this->getDoctrine()
-                     ->getRepository('TriebawerkeSkilleratorBundle:Skill')
-                     ->find(array($id));
-      return array('skill_id' => $skills->getId(),
-                   'skill_name' => $skills->getName()
-              );
+        $skill  = new Skill();
+        $request = $this->getRequest();
+        $form    = $this->createForm(new CertificateType(), $skill);
+        $form->bindRequest($request);
+
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getEntityManager();
+            $em->persist($skill);
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('_skills_show', array('id' => $skill->getId())));
+            
+        }
+
+        return array(
+            'entity' => $skill,
+            'form'   => $form->createView()
+        );
     }
     
     /**
@@ -52,30 +82,86 @@ class SkillsController extends Controller
      * @Template()
      */
     public function newAction(Request $request)
-      {
-
-        $form = $this->createFormBuilder($this->skill)
-                ->add('name', 'text')
-                ->add('description', 'text')
-                ->getForm();
+    {
+        $skill = new Skill();
+      
+        $form   = $this->createForm(new CertificateType(), $skill);
         
-        if ($request->getMethod() == 'POST') {
-        $form->bindRequest($request);
-          if ($form->isValid()) {
-
-          $em = $this->getDoctrine()->getEntityManager();
-          $em->persist($this->skill);
-          $em->flush();
-          
-          $id = $this->skill->getId();
-          
-          return $this->redirect($this->generateUrl('_skills_create', array('id' => $id)));
-          }
-        }
-        return $this->render('TriebawerkeSkilleratorBundle:Skills:new.html.twig', array(
-          'form' => $form->createView(),
-          ));
-
+        return array(
+            'entity' => $skill,
+            'form'   => $form->createView()
+        );
       }
+      
+    /**
+     * Displays a form to edit an existing skill entity.
+     *
+     * @Route("/{id}/edit", name="_skill_edit")
+     * @Template()
+     */
+    public function editAction($id)
+    {
+        $em = $this->getDoctrine()->getEntityManager();
 
+        $skill = $em->getRepository('TriebawerkeSkilleratorBundle:Skill')->find($id);
+
+        if (!$skill) {
+            throw $this->createNotFoundException('Unable to find Skill entity.');
+        }
+
+        $editForm = $this->createForm(new CertificateType(), $skill);
+        $deleteForm = $this->createDeleteForm($id);
+
+        return array(
+            'entity'      => $skill,
+            'edit_form'   => $editForm->createView(),
+            'delete_form' => $deleteForm->createView(),
+        );
+    }
+    
+    /**
+     * Edits an existing Skill entity.
+     *
+     * @Route("/{id}/update", name="_skills_update")
+     * @Method("post")
+     * @Template("TriebawerkeSkilleratorBundle:Skill:edit.html.twig")
+     */
+    public function updateAction($id)
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+
+        $skill = $em->getRepository('TriebawerkeSkilleratorBundle:Skill')->find($id);
+
+        if (!$skill) {
+            throw $this->createNotFoundException('Unable to find Skill entity.');
+        }
+
+        $editForm   = $this->createForm(new CertificateType(), $skill);
+        $deleteForm = $this->createDeleteForm($id);
+
+        $request = $this->getRequest();
+
+        $editForm->bindRequest($request);
+
+        if ($editForm->isValid()) {
+            $em->persist($skill);
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('_skills_edit', array('id' => $id)));
+        }
+
+        return array(
+            'entity'      => $skill,
+            'edit_form'   => $editForm->createView(),
+            'delete_form' => $deleteForm->createView(),
+        );
+    }
+
+    private function createDeleteForm($id)
+    {
+        return $this->createFormBuilder(array('id' => $id))
+            ->add('id', 'hidden')
+            ->getForm()
+        ;
+    }
 }
