@@ -189,11 +189,13 @@ class appdevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Triebawerke\\SkilleratorBundle\\Controller\\SkillsController::showAction',)), array('_route' => '_skills_show'));
         }
 
+        // _level_new
+        if ($pathinfo === '/level/new') {
+            return array (  '_controller' => 'Triebawerke\\SkilleratorBundle\\Controller\\LevelController::newAction',  '_route' => '_level_new',);
+        }
+
         // _level
-        if (rtrim($pathinfo, '/') === '/level') {
-            if (substr($pathinfo, -1) !== '/') {
-                return $this->redirect($pathinfo.'/', '_level');
-            }
+        if ($pathinfo === '/level') {
             return array (  '_controller' => 'Triebawerke\\SkilleratorBundle\\Controller\\LevelController::indexAction',  '_route' => '_level',);
         }
 
@@ -203,8 +205,23 @@ class appdevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         }
 
         // _level_create
-        if (0 === strpos($pathinfo, '/level/create') && preg_match('#^/level/create/(?P<id>[^/]+?)$#s', $pathinfo, $matches)) {
-            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Triebawerke\\SkilleratorBundle\\Controller\\LevelController::createAction',)), array('_route' => '_level_create'));
+        if ($pathinfo === '/level/create') {
+            return array (  '_controller' => 'Triebawerke\\SkilleratorBundle\\Controller\\LevelController::createAction',  '_route' => '_level_create',);
+        }
+
+        // _level_show
+        if (0 === strpos($pathinfo, '/level/show') && preg_match('#^/level/show/(?P<id>[^/]+?)$#s', $pathinfo, $matches)) {
+            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Triebawerke\\SkilleratorBundle\\Controller\\LevelController::showAction',)), array('_route' => '_level_show'));
+        }
+
+        // _level_delete
+        if (0 === strpos($pathinfo, '/level/delete') && preg_match('#^/level/delete/(?P<id>[^/]+?)$#s', $pathinfo, $matches)) {
+            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Triebawerke\\SkilleratorBundle\\Controller\\LevelController::deleteAction',)), array('_route' => '_level_delete'));
+        }
+
+        // _level_edit
+        if (0 === strpos($pathinfo, '/level/edit') && preg_match('#^/level/edit/(?P<id>[^/]+?)$#s', $pathinfo, $matches)) {
+            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Triebawerke\\SkilleratorBundle\\Controller\\LevelController::editAction',)), array('_route' => '_level_edit'));
         }
 
         // certificate

@@ -41,9 +41,13 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
        '_skills_show' => true,
        '_skills_edit' => true,
        '_skills_delete' => true,
+       '_level_new' => true,
        '_level' => true,
        '_level_update' => true,
        '_level_create' => true,
+       '_level_show' => true,
+       '_level_delete' => true,
+       '_level_edit' => true,
        'certificate' => true,
        'certificate_show' => true,
        'certificate_edit' => true,
@@ -217,9 +221,14 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
         return array(array (  0 => 'id',), array (  '_controller' => 'TriebawerkeSkilleratorBundle:kills:delete',), array (), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  1 =>   array (    0 => 'text',    1 => '/skills/delete',  ),));
     }
 
+    private function get_level_newRouteInfo()
+    {
+        return array(array (), array (  '_controller' => 'Triebawerke\\SkilleratorBundle\\Controller\\LevelController::newAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/level/new',  ),));
+    }
+
     private function get_levelRouteInfo()
     {
-        return array(array (), array (  '_controller' => 'Triebawerke\\SkilleratorBundle\\Controller\\LevelController::indexAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/level/',  ),));
+        return array(array (), array (  '_controller' => 'Triebawerke\\SkilleratorBundle\\Controller\\LevelController::indexAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/level',  ),));
     }
 
     private function get_level_updateRouteInfo()
@@ -229,7 +238,22 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
 
     private function get_level_createRouteInfo()
     {
-        return array(array (  0 => 'id',), array (  '_controller' => 'Triebawerke\\SkilleratorBundle\\Controller\\LevelController::createAction',), array (), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  1 =>   array (    0 => 'text',    1 => '/level/create',  ),));
+        return array(array (), array (  '_controller' => 'Triebawerke\\SkilleratorBundle\\Controller\\LevelController::createAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/level/create',  ),));
+    }
+
+    private function get_level_showRouteInfo()
+    {
+        return array(array (  0 => 'id',), array (  '_controller' => 'Triebawerke\\SkilleratorBundle\\Controller\\LevelController::showAction',), array (), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  1 =>   array (    0 => 'text',    1 => '/level/show',  ),));
+    }
+
+    private function get_level_deleteRouteInfo()
+    {
+        return array(array (  0 => 'id',), array (  '_controller' => 'Triebawerke\\SkilleratorBundle\\Controller\\LevelController::deleteAction',), array (), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  1 =>   array (    0 => 'text',    1 => '/level/delete',  ),));
+    }
+
+    private function get_level_editRouteInfo()
+    {
+        return array(array (  0 => 'id',), array (  '_controller' => 'Triebawerke\\SkilleratorBundle\\Controller\\LevelController::editAction',), array (), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  1 =>   array (    0 => 'text',    1 => '/level/edit',  ),));
     }
 
     private function getcertificateRouteInfo()

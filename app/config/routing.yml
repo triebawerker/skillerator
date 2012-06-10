@@ -28,9 +28,13 @@ _skills_edit:
 _skills_delete:
     pattern:      /skills/delete/{id}
     defaults:     { _controller: TriebawerkeSkilleratorBundle:kills:delete}
-  
+
+_level_new:
+    pattern:      /level/new
+    defaults:     { _controller: TriebawerkeSkilleratorBundle:Level:new}
+    
 _level:
-    pattern:      /level/
+    pattern:      /level
     defaults:     { _controller: TriebawerkeSkilleratorBundle:Level:index}
 
 _level_update:
@@ -38,8 +42,20 @@ _level_update:
     defaults:     { _controller: TriebawerkeSkilleratorBundle:Level:update}
         
 _level_create:
-    pattern:      /level/create/{id}
-    defaults:     { _controller: TriebawerkeSkilleratorBundle:Level:create}   
+    pattern:      /level/create
+    defaults:     { _controller: TriebawerkeSkilleratorBundle:Level:create} 
+    
+_level_show:
+    pattern:      /level/show/{id}
+    defaults:     { _controller: TriebawerkeSkilleratorBundle:Level:show}
+    
+_level_delete:
+    pattern:      /level/delete/{id}
+    defaults:     { _controller: TriebawerkeSkilleratorBundle:Level:delete}
+    
+_level_edit:
+    pattern:      /level/edit/{id}
+    defaults:     { _controller: TriebawerkeSkilleratorBundle:Level:edit}
         
 certificate:
     pattern:      /certificate
