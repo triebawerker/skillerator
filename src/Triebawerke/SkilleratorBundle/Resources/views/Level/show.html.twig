@@ -24,17 +24,17 @@
 
 <ul class="record_actions">
     <li>
-        <a href="{{ path('_skills') }}">
+        <a href="{{ path('_level') }}">
             Back to the list
         </a>
     </li>
     <li>
-        <a href="{{ path('_skills_edit', { 'id': entity.id }) }}">
+        <a href="{{ path('_level_edit', { 'id': entity.id }) }}">
             Edit
         </a>
     </li>
     <li>
-        <form action="{{ path('_skills_delete', { 'id': entity.id }) }}" method="post">
+        <form action="{{ path('_level_delete', { 'id': entity.id }) }}" method="post">
             {{ form_widget(delete_form) }}
             <button type="submit">Delete</button>
         </form>

@@ -3,10 +3,9 @@
 {% block title "Skillerator" %}
 
 {% block content %}
-    <h1>Update level</h1>
-
-    <form action="{{ path('_level_update', level.id) }}" method="post" {{ form_enctype(form) }}> 
-      {{ form_widget(form) }} 
+    <h1>Enter new level</h1>
+    <form action="{{ path('_level_create') }}" method="post" {{ form_enctype(form) }}> 
+      {{ form_widget(form) }}
       <input type="submit" />
     </form>
 
