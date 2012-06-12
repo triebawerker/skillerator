@@ -83,7 +83,7 @@ ul#demo-list a
 
 ul, ol
 {
-    padding-left: 20px;
+    padding-left: 0px;
 }
 
 li
@@ -99,6 +99,18 @@ ol li
 ul li
 {
     list-style-type: none;
+}
+
+td
+{
+    padding: 5px;
+}
+
+th
+{
+    padding: 5px;
+    color: gray;
+    font-weight: bold;
 }
 
 #symfony-header

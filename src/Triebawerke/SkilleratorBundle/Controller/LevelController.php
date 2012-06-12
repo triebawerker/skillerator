@@ -3,8 +3,6 @@
 namespace Triebawerke\SkilleratorBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Triebawerke\SkilleratorBundle\Entity\Level;
 use Triebawerke\SkilleratorBundle\Form\CertificateType;
 
@@ -22,10 +20,11 @@ class LevelController extends Controller
      */
     public function indexAction()
     {
-        $level = $this->getDoctrine()
-                       ->getRepository('TriebawerkeSkilleratorBundle:Level')
-                       ->findAll();
-        return array('levels' => $level);
+        $em = $this->getDoctrine()->getEntityManager();
+
+        $entities = $em->getRepository('TriebawerkeSkilleratorBundle:Level')->findAll();
+
+        return array('entities' => $entities);
     }
     
     /**
@@ -47,7 +46,7 @@ class LevelController extends Controller
     /**
      * Edits an existing Skill entity.
      *
-     * @Route("/{id}/update", name="_level_update")
+     * @Route("/{id}/update", name="level_update")
      * @Method("post")
      * @Template("TriebawerkeSkilleratorBundle:Level:edit.html.twig")
      */

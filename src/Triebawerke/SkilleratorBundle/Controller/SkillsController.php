@@ -25,7 +25,7 @@ class SkillsController extends Controller
         $skills = $this->getDoctrine()
                        ->getRepository('TriebawerkeSkilleratorBundle:Skill')
                        ->findAll();
-        return array('skills' => $skills);
+        return array('entities' => $skills);
     }
     
     /**

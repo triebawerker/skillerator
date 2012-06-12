@@ -8,13 +8,27 @@
         <li><a href="{{ path('_skills_new') }}">new Skill</a></li>
     </ul>
 
-    <ul>
-    {% for skill in skills %}
-        <li>{{ skill.name }}</li>
-        <li>{{ skill.description }}</li>
-        <li><a href="{{ path('_skills_edit', {'id': skill.id }) }}">edit</a></li>
-    {% else %}
-        <li>No skills found</li>
+
+
+<table class="records_list">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Actions</th>
+            <th>&nbsp;</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td>{{ entity.name }}</td>
+            <td>{{ entity.description }}</td>
+            <td><a href="{{ path('_skills_show', { 'id': entity.id }) }}">show</a></td>
+            <td><a href="{{ path('_skills_edit', { 'id': entity.id }) }}">edit</a></td>       
+        </tr>
     {% endfor %}
-</ul>
+    </tbody>
+</table>
+
 {% endblock %}

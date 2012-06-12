@@ -101,6 +101,12 @@ ul li
     list-style-type: none;
 }
 
+td
+{
+    padding: 3px;
+    background-color: grey;
+}
+
 #symfony-header
 {
     position: relative;

@@ -37,7 +37,7 @@ _level:
     pattern:      /level
     defaults:     { _controller: TriebawerkeSkilleratorBundle:Level:index}
 
-_level_update:
+level_update:
     pattern:      /level/update/{id}
     defaults:     { _controller: TriebawerkeSkilleratorBundle:Level:update}
         
