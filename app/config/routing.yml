@@ -84,6 +84,26 @@ certificate_create:
 certificate_delete:
     pattern:      /certificate/delete/{id}
     defaults:     { _controller: TriebawerkeSkilleratorBundle:Certificate:delete}
+
+userskills:
+    pattern:      /userskills
+    defaults:     { _controller: TriebawerkeSkilleratorBundle:UserSkills:index}        
+
+userskills_new:
+    pattern:      /userskills/new
+    defaults:     { _controller: TriebawerkeSkilleratorBundle:UserSkills:new}
+    
+userskills_show:
+    pattern:      /userskills/show/{id}
+    defaults:     { _controller: TriebawerkeSkilleratorBundle:UserSkills:show}
+    
+userskills_edit:
+    pattern:      /userskills/edit/{id}
+    defaults:     { _controller: TriebawerkeSkilleratorBundle:UserSkills:edit}
+    
+userskills_create:
+    pattern:      /userskills/create
+    defaults:     { _controller: TriebawerkeSkilleratorBundle:UserSkills:create}
         
 _home:
     resource:     "@TriebawerkeSkilleratorBundle/Controller/HomeController.php"

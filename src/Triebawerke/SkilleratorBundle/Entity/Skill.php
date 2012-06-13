@@ -11,7 +11,8 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="skill") 
+ * @ORM\Table(name="skill")
+ * @ORM\ManyToMany(targetEntity="Skill")
  */
 class Skill {
     /**
@@ -30,6 +31,16 @@ class Skill {
      * @ORM\Column(type="text") 
      */
     protected $description;
+    
+    /**
+     * @ORM\Column(type="text") 
+     */
+    protected $users;
+    
+    public function __construct()
+    {
+        $this->users = new ArrayCollection();
+    }
   
     /**
      * Get id

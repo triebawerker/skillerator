@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="level") 
+ * @ORM\Table(name="certificate") 
  */
 class Certificate {
     /**
