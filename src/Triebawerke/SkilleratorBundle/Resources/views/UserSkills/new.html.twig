@@ -5,12 +5,11 @@
 {% block content_header '' %}
 
 {% block content %}
-<h1>Enter new certificate</h1>
-
-<form action="{{ path('userskills_create') }}" method="post" {{ form_enctype(form) }}>
-    {{ form_widget(form) }}
-    <button type="submit">Create</button>
-</form>
+<h1>Enter your new skill</h1>
+    <form action="{{ path('userskills_create') }}" method="post" {{ form_enctype(form) }}> 
+      {{ form_widget(form) }}
+      <input type="submit" />
+    </form>
 
 <ul class="record_actions">
     <li><a href="{{ path('userskills') }}">Back to the list</a></li>

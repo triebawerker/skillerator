@@ -12,7 +12,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Triebawerke\SkilleratorBundle\Entity\Skill;
 use Triebawerke\SkilleratorBundle\Entity\User;
-use Triebawerke\SkilleratorBundle\Form\CertificateType;
+use Triebawerke\SkilleratorBundle\Entity\UserSkills;
+use Triebawerke\SkilleratorBundle\Form\MyskillsType;
 
 // these import the "@Route" and "@Template" and "@Method" annotations
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -29,6 +30,9 @@ class UserSkillsController extends Controller {
       $userSkills = $this->getDoctrine()
                       ->getRepository('TriebawerkeSkilleratorBundle:User')
                       ->findAll();
+
+        var_dump($userSkills);
+        
       return array('entities' => $userSkills);
     }
     
@@ -40,7 +44,7 @@ class UserSkillsController extends Controller {
     { 
         $skill  = new Skill();
         $request = $this->getRequest();
-        $form    = $this->createForm(new CertificateType(), $skill);
+        $form    = $this->createForm(new MyskillsType(), $skill);
         $form->bindRequest($request);
 
         if ($form->isValid()) {
@@ -56,6 +60,47 @@ class UserSkillsController extends Controller {
             'entity' => $skill,
             'form'   => $form->createView()
         );
+    }
+    
+    /**
+     * Displays a form to create a new Certificate entity.
+     *
+     * @Route("/new", name="userskills_new")
+     * @Template()
+     */
+    public function newAction()
+    {
+        $userSkills = new UserSkills();
+        $em = $this->getDoctrine()->getEntityManager();
+        $skills = $em->getRepository('TriebawerkeSkilleratorBundle:Skill')
+                     ->findAll();
+        $formValues = array($userSkills, $skills);
+        $form   = $this->createForm(new MyskillsType(), $userSkills);        
+        
+        return array(
+            'skills'     => $skills,
+            'form'       => $form->createView()
+        );
+    }
+    
+    
+    /**
+     *@Route("/test", name="userskills_test")
+     *@Template() 
+     */
+    public function testAction()
+    {
+      $em = $this->getDoctrine()->getEntityManager();
+      $user = $em->getRepository('TriebawerkeSkilleratorBundle:User')->find(1);
+      $skill = $em->getRepository('TriebawerkeSkilleratorBundle:Skill')->find(2);
+      $user->addSkill($skill);
+      
+      $em->persist($user);
+      $em->persist($skill);
+      $em->flush();
+      
+      var_dump($user);
+      return array('entities' => $user);
     }
 }
 

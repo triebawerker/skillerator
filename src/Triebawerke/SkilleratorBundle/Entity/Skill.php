@@ -7,12 +7,13 @@
 namespace Triebawerke\SkilleratorBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="skill")
- * @ORM\ManyToMany(targetEntity="Skill")
+ * @ORM\ManyToOne(targetEntity="UserSkills")
  */
 class Skill {
     /**
@@ -31,16 +32,6 @@ class Skill {
      * @ORM\Column(type="text") 
      */
     protected $description;
-    
-    /**
-     * @ORM\Column(type="text") 
-     */
-    protected $users;
-    
-    public function __construct()
-    {
-        $this->users = new ArrayCollection();
-    }
   
     /**
      * Get id
@@ -90,5 +81,10 @@ class Skill {
     public function getDescription()
     {
         return $this->description;
+    }
+    
+    public function __toString()
+    {
+      return $this->name;
     }
 }

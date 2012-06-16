@@ -3,18 +3,14 @@
 namespace Triebawerke\SkilleratorBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Triebawerke\SkilleratorBundle\Entity\User
  *
- * @ORM\Table()
  * @ORM\Entity
  * @ORM\Table(name="user")
- * @ORM\ManyToMany(targetEntity="skill")
- *   JoinTable(name="user_skills",
- *   joinColumns={@JoinColumn(name="user_id", referencedColumnName="id")},
- *   inverseJoinColumns={@JoinColumn(name="skills_id", referencedColumnName="id")}
- *   )
+ * @ORM\ManyToOne(targetEntity="UserSkills")
  */
 class User
 {
@@ -40,7 +36,6 @@ class User
      * @ORM\Column(name="lastname", type="string", length=50)
      */
     private $lastname;
-
 
     /**
      * Get id

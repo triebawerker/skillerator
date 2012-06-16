@@ -104,6 +104,14 @@ userskills_edit:
 userskills_create:
     pattern:      /userskills/create
     defaults:     { _controller: TriebawerkeSkilleratorBundle:UserSkills:create}
+
+userskills_new:
+    pattern:      /userskills/new
+    defaults:     { _controller: TriebawerkeSkilleratorBundle:UserSkills:new} 
+    
+userskills_test:
+    pattern:      /userskills/test
+    defaults:     { _controller: TriebawerkeSkilleratorBundle:UserSkills:test} 
         
 _home:
     resource:     "@TriebawerkeSkilleratorBundle/Controller/HomeController.php"

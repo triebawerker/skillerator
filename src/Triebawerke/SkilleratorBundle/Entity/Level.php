@@ -12,6 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity
  * @ORM\Table(name="level") 
+ * @ORM\ManyToOne(targetEntity="UserSkills")
  */
 class Level {
     /**
