@@ -10,6 +10,7 @@
 <table class="records_list">
     <thead>
         <tr>
+            <th>Name</th>            
             <th>Name</th>
             <th>Description</th>
             <th>Actions</th>
@@ -19,8 +20,9 @@
     <tbody>
     {% for entity in entities %}
         <tr>
-            <td>{{ entity.name }}</td>
-            <td>{{ entity.lastname }}</td>
+            <td>{{ entity.skills.id }}</td>
+            <td>{{ entity.skills.name}}</td>
+            <td>{{ entity.skills.description}}</td>
             <td><a href="{{ path('userskills_show', { 'id': entity.id }) }}">show</a></td>
             <td><a href="{{ path('userskills_edit', { 'id': entity.id }) }}">edit</a></td>       
         </tr>

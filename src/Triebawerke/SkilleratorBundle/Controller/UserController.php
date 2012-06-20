@@ -6,15 +6,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Triebawerke\SkilleratorBundle\Entity\UserSkills;
-use Triebawerke\SkilleratorBundle\Form\MyskillsType;
+use Triebawerke\SkilleratorBundle\Entity\User;
+use Triebawerke\SkilleratorBundle\Form\UserType;
 
 /**
  * User controller.
  *
  * @Route("/user")
  */
-class UserSkillsController extends Controller
+class UserController extends Controller
 {
     /**
      * Lists all User entities.
@@ -24,27 +24,27 @@ class UserSkillsController extends Controller
      */
     public function indexAction()
     {
-        $userSkills = $this->getDoctrine()
-        ->getRepository('TriebawerkeSkilleratorBundle:UserSkills')
-        ->findAll();
-        
-        var_dump($userSkills);
-        
-        return array('entities' => $userSkills);
+        $em = $this->getDoctrine()->getEntityManager();
+
+        $entities = $em->getRepository('TriebawerkeSkilleratorBundle:User')->findAll();
+        var_dump($entities);
+        return array(
+              'entities' => $entities,
+                    );
     }
 
     /**
      * Finds and displays a User entity.
      *
-     * @Route("/{id}/show", name="userskills_show")
+     * @Route("/{id}/show", name="user_show")
      * @Template()
      */
     public function showAction($id)
     {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $entity = $em->getRepository('TriebawerkeSkilleratorBundle:UserSkills')->find($id);
-var_dump($entity->getSkills()->getName());
+        $entity = $em->getRepository('TriebawerkeSkilleratorBundle:User')->find($id);
+
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find User entity.');
         }
@@ -53,23 +53,19 @@ var_dump($entity->getSkills()->getName());
 
         return array(
             'entity'      => $entity,
-            'skill'       => $entity->getSkills(),
             'delete_form' => $deleteForm->createView(),        );
     }
-    
 
     /**
      * Displays a form to create a new User entity.
      *
-     * @Route("/new", name="userskills_new")
+     * @Route("/new", name="user_new")
      * @Template()
      */
     public function newAction()
     {
-        $em = $this->getDoctrine()->getEntityManager();
-
-        $entity = $em->getRepository('TriebawerkeSkilleratorBundle:UserSkills')->find(1);
-        $form   = $this->createForm(new MyskillsType(), $entity);
+        $entity = new User();
+        $form   = $this->createForm(new UserType(), $entity);
 
         return array(
             'entity' => $entity,
@@ -86,13 +82,9 @@ var_dump($entity->getSkills()->getName());
      */
     public function createAction()
     {
-        $entity  = new UserSkills();
-        var_dump($entity);
-        // set user_id
-        $entity->setUsers_id(1);
-        
+        $entity  = new User();
         $request = $this->getRequest();
-        $form    = $this->createForm(new MyskillsType(), $entity);
+        $form    = $this->createForm(new UserType(), $entity);
         $form->bindRequest($request);
 
         if ($form->isValid()) {
@@ -100,7 +92,7 @@ var_dump($entity->getSkills()->getName());
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('userskills_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('user_show', array('id' => $entity->getId())));
             
         }
 
@@ -120,13 +112,21 @@ var_dump($entity->getSkills()->getName());
     {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $entity = $em->getRepository('TriebawerkeSkilleratorBundle:UserSkills')->find($id);
+        $entity = $em->getRepository('TriebawerkeSkilleratorBundle:User')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find User entity.');
         }
 
-        $editForm = $this->createForm(new MyskillsType(), $entity);
+//        $editForm = $this->createForm(new UserType(), $entity);
+        
+        $editForm = $this->createFormBuilder($entity)
+                ->add('name')
+                ->add('lastname')
+                ->add('company')
+                ->getForm();
+        
+        
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
@@ -147,24 +147,34 @@ var_dump($entity->getSkills()->getName());
     {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $entity = $em->getRepository('TriebawerkeSkilleratorBundle:UserSkills')->find($id);
+        $entity = $em->getRepository('TriebawerkeSkilleratorBundle:User')->find($id);
+
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find User entity.');
         }
 
-        $editForm   = $this->createForm(new MyskillsType(), $entity);
+//        $editForm   = $this->createForm(new UserType(), $entity);
+          $editForm = $this->createFormBuilder($entity)
+          ->add('name')
+          ->add('lastname')
+          ->add('company')
+          ->getForm();
         $deleteForm = $this->createDeleteForm($id);
 
         $request = $this->getRequest();
+  
 
         $editForm->bindRequest($request);
-
+//        echo "id: " . $id . PHP_EOL;
+//        var_dump($entity);
+//        var_dump($editForm);
+//        die();
         if ($editForm->isValid()) {
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('userskills_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('user_edit', array('id' => $id)));
         }
 
         return array(
@@ -189,7 +199,7 @@ var_dump($entity->getSkills()->getName());
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getEntityManager();
-            $entity = $em->getRepository('TriebawerkeSkilleratorBundle:UserSkills')->find($id);
+            $entity = $em->getRepository('TriebawerkeSkilleratorBundle:User')->find($id);
 
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find User entity.');
@@ -210,6 +220,3 @@ var_dump($entity->getSkills()->getName());
         ;
     }
 }
-
-
-?>

@@ -88,10 +88,6 @@ certificate_delete:
 userskills:
     pattern:      /userskills
     defaults:     { _controller: TriebawerkeSkilleratorBundle:UserSkills:index}        
-
-userskills_new:
-    pattern:      /userskills/new
-    defaults:     { _controller: TriebawerkeSkilleratorBundle:UserSkills:new}
     
 userskills_show:
     pattern:      /userskills/show/{id}
@@ -100,6 +96,10 @@ userskills_show:
 userskills_edit:
     pattern:      /userskills/edit/{id}
     defaults:     { _controller: TriebawerkeSkilleratorBundle:UserSkills:edit}
+
+userskills_update:
+    pattern:      /userskills/update/{id}
+    defaults:     { _controller: TriebawerkeSkilleratorBundle:UserSkills:update}
     
 userskills_create:
     pattern:      /userskills/create
@@ -108,11 +108,68 @@ userskills_create:
 userskills_new:
     pattern:      /userskills/new
     defaults:     { _controller: TriebawerkeSkilleratorBundle:UserSkills:new} 
+
+userskills_delete:
+    pattern:      /userskills/delete
+    defaults:     { _controller: TriebawerkeSkilleratorBundle:UserSkills:delete} 
+
+user:
+    pattern:      /user
+    defaults:     { _controller: TriebawerkeSkilleratorBundle:User:index}        
     
-userskills_test:
-    pattern:      /userskills/test
-    defaults:     { _controller: TriebawerkeSkilleratorBundle:UserSkills:test} 
-        
+user_show:
+    pattern:      /user/show/{id}
+    defaults:     { _controller: TriebawerkeSkilleratorBundle:User:show}
+    
+user_edit:
+    pattern:      /user/edit/{id}
+    defaults:     { _controller: TriebawerkeSkilleratorBundle:User:edit}
+    
+user_create:
+    pattern:      /user/create
+    defaults:     { _controller: TriebawerkeSkilleratorBundle:User:create}
+
+user_new:
+    pattern:      /user/new
+    defaults:     { _controller: TriebawerkeSkilleratorBundle:User:new} 
+
+user_delete:
+    pattern:      /user/delete
+    defaults:     { _controller: TriebawerkeSkilleratorBundle:User:delete}      
+
+user_update:
+    pattern:      /user/update/{id}
+    defaults:     { _controller: TriebawerkeSkilleratorBundle:User:update}
+
+     
+company:
+    pattern:      /company
+    defaults:     { _controller: TriebawerkeSkilleratorBundle:Company:index}        
+    
+company_show:
+    pattern:      /company/show/{id}
+    defaults:     { _controller: TriebawerkeSkilleratorBundle:Company:show}
+    
+company_edit:
+    pattern:      /company/edit/{id}
+    defaults:     { _controller: TriebawerkeSkilleratorBundle:Company:edit}
+    
+company_create:
+    pattern:      /company/create
+    defaults:     { _controller: TriebawerkeSkilleratorBundle:Company:create}
+
+company_new:
+    pattern:      /company/new
+    defaults:     { _controller: TriebawerkeSkilleratorBundle:Company:new} 
+
+company_delete:
+    pattern:      /company/delete
+    defaults:     { _controller: TriebawerkeSkilleratorBundle:Company:delete}      
+
+company_update:
+    pattern:      /company/update/{id}
+    defaults:     { _controller: TriebawerkeSkilleratorBundle:Company:update}     
+     
 _home:
     resource:     "@TriebawerkeSkilleratorBundle/Controller/HomeController.php"
     type:         annotation

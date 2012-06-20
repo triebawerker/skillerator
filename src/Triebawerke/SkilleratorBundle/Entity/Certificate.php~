@@ -1,20 +1,19 @@
 <?php
 /**
- * Description of Skill
+ * Description of Level
  *
  * @author micha
  */
 namespace Triebawerke\SkilleratorBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection;
 
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="skill")
+ * @ORM\Table(name="certificate") 
  */
-class Skill {
+class Certificate {
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -31,13 +30,6 @@ class Skill {
      * @ORM\Column(type="text") 
      */
     protected $description;
-    
-    protected $users;
-    
-   /**
-    * @ORM\OneToMany(targetEntity="UserSkills", mappedBy="skills")
-    */       
-    protected $usersSkills;
   
     /**
      * Get id
@@ -87,10 +79,5 @@ class Skill {
     public function getDescription()
     {
         return $this->description;
-    }
-    
-    public function __toString()
-    {
-      return $this->name;
     }
 }
