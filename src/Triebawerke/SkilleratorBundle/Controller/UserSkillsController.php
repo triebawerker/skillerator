@@ -66,9 +66,10 @@ var_dump($entity->getSkills()->getName());
      */
     public function newAction()
     {
-        $em = $this->getDoctrine()->getEntityManager();
-
-        $entity = $em->getRepository('TriebawerkeSkilleratorBundle:UserSkills')->find(1);
+        $entity = new UserSkills();
+        
+        // set user_id
+        $entity->setUser_id(1);
         $form   = $this->createForm(new MyskillsType(), $entity);
 
         return array(
@@ -87,14 +88,14 @@ var_dump($entity->getSkills()->getName());
     public function createAction()
     {
         $entity  = new UserSkills();
-        var_dump($entity);
-        // set user_id
-        $entity->setUsers_id(1);
+        $entity->setUserId(1);
+//        $entity->setSkill_Id(1);
         
         $request = $this->getRequest();
         $form    = $this->createForm(new MyskillsType(), $entity);
-        $form->bindRequest($request);
 
+        $form->bindRequest($request);
+var_dump($form);
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getEntityManager();
             $em->persist($entity);

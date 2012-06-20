@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Triebawerke\SkilleratorBundle\Entity\User
  *
  * @ORM\Entity
- * @ORM\Table(name="users_skills")
+ * @ORM\Table(name="user_skill")
  *
  */
 class UserSkills
@@ -30,24 +30,24 @@ class UserSkills
      *
      * @ORM\Column(name="user_id", type="integer")
      */
-    private $users_id;
+    private $user_id;
 
     /**
      * @var string $skill_id
      *
-     * @ORM\Column(name="skill_id", type="integer", length=50)
+     * @ORM\Column(name="skill_id", type="integer")
      */
-    private $skills_id;
+    private $skill_id;
     
     /**
-     * @ORM\ManyToOne(targetEntity="Skill", inversedBy="usersSkills", cascade={"persist"})
-     * @var type 
+     * @ORM\ManyToOne(targetEntity="Skill", inversedBy="userSkill", cascade={"persist"})
+     * @ORM\JoinColumn(name="skill_id", referencedColumnName="id") 
      */    
     private $skills;
     
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="usersSkills", cascade={"persist"})
-     * @var type 
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="userSkill", cascade={"persist"})
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $users;
     
@@ -76,22 +76,22 @@ class UserSkills
         return $this->id;
     }
     
-    public function getUsers_id()
+    public function getUserId()
     {
       return $this->user_id;
     }
     
-    public function setUsers_id($user_id)
+    public function setUserId($user_id)
     {
       $this->user_id = $user_id;
     }
     
-     public function getSkills_Id()
+     public function getSkillId()
     {
       return $this->skill_id;
     }
     
-    public function setSkills_Id($skill_id)
+    public function setSkillId($skill_id)
     {
       $this->skill_id = skill_id;
     }
