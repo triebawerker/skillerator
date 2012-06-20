@@ -10,13 +10,17 @@ class MyskillsType extends AbstractType
     public function buildForm(FormBuilder $builder, array $options)
     {
     $builder->add('skills', 'entity', array(
-        'class' => 'TriebawerkeSkilleratorBundle:Skill',
-        )); 
+                  'class' => 'TriebawerkeSkilleratorBundle:Skill',
+                  ))
+            ->add('users', 'entity', array(
+                  'class' => 'TriebawerkeSkilleratorBundle:User',
+                  ))
+                  ; 
 
     }
 
     public function getName()
     {
-        return 'triebawerke_skilleratorbundle_certificatetype';
+        return 'triebawerke_skilleratorbundle_userskilltype';
     }
 }

@@ -51,21 +51,8 @@ class UserSkills
      */
     private $users;
     
-    public function getSkills()
-    {
-        return $this->skills;
-    }
-    
-    public function setSkills($skills)
-    {
-        $this->skills = $skills;
-    }
-    
-    public function getUsers()
-    {
-        return $this->users;
-    }
-      
+
+
     /**
      * Get id
      *
@@ -75,26 +62,84 @@ class UserSkills
     {
         return $this->id;
     }
-    
+
+    /**
+     * Set user_id
+     *
+     * @param integer $userId
+     */
+    public function setUserId($userId)
+    {
+        $this->user_id = $userId;
+    }
+
+    /**
+     * Get user_id
+     *
+     * @return integer 
+     */
     public function getUserId()
     {
-      return $this->user_id;
-    }
-    
-    public function setUserId($user_id)
-    {
-      $this->user_id = $user_id;
-    }
-    
-     public function getSkillId()
-    {
-      return $this->skill_id;
-    }
-    
-    public function setSkillId($skill_id)
-    {
-      $this->skill_id = skill_id;
+        return $this->user_id;
     }
 
+    /**
+     * Set skill_id
+     *
+     * @param integer $skillId
+     */
+    public function setSkillId($skillId)
+    {
+        $this->skill_id = $skillId;
+    }
 
+    /**
+     * Get skill_id
+     *
+     * @return integer 
+     */
+    public function getSkillId()
+    {
+        return $this->skill_id;
+    }
+
+    /**
+     * Set skills
+     *
+     * @param Triebawerke\SkilleratorBundle\Entity\Skill $skills
+     */
+    public function setSkills(\Triebawerke\SkilleratorBundle\Entity\Skill $skills)
+    {
+        $this->skills = $skills;
+    }
+
+    /**
+     * Get skills
+     *
+     * @return Triebawerke\SkilleratorBundle\Entity\Skill 
+     */
+    public function getSkills()
+    {
+        return $this->skills;
+    }
+
+    /**
+     * Set users
+     *
+     * @param Triebawerke\SkilleratorBundle\Entity\User $users
+     */
+    public function setUsers(\Triebawerke\SkilleratorBundle\Entity\User $users)
+    {
+        $this->users = $users;
+    }
+
+    /**
+     * Get users
+     *
+     * @return Triebawerke\SkilleratorBundle\Entity\User 
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
 }

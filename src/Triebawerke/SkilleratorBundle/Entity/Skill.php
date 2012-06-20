@@ -93,4 +93,28 @@ class Skill {
     {
       return $this->name;
     }
+    public function __construct()
+    {
+        $this->usersSkills = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add usersSkills
+     *
+     * @param Triebawerke\SkilleratorBundle\Entity\UserSkills $usersSkills
+     */
+    public function addUserSkills(\Triebawerke\SkilleratorBundle\Entity\UserSkills $usersSkills)
+    {
+        $this->usersSkills[] = $usersSkills;
+    }
+
+    /**
+     * Get usersSkills
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getUsersSkills()
+    {
+        return $this->usersSkills;
+    }
 }

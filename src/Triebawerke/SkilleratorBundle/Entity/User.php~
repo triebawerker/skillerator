@@ -4,19 +4,14 @@ namespace Triebawerke\SkilleratorBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Triebawerke\SkilleratorBundle\Entity\User
  *
  * @ORM\Entity
  * @ORM\Table(name="user")
- * @ORM\ManyToMany(targetEntity="Skill", inversedBy="users")
- * @ORM\JoinTable(name="users_skills")
- * @ORM\joinColumns={@JoinColumn(name="user_id", referencedColumnName="id")},
- *      inverseJoinColumns={@JoinColumn(name="skill_id", referencedColumnName="id")})
- * 
- * @ORM\ManyToOne(targetEntity="Company", inversedBy="users")
- * @ORM\JoinColumn(name="category_id", referencedColumnName="id")    
+ *
  */
 class User
 {
@@ -43,23 +38,49 @@ class User
      */
     private $lastname;
     
-    private $skills;
-
-    protected $company;
+    /**
+     * @var int $company_id
+     *
+     * @ORM\Column(name="company_id", type="integer")
+     * 
+     */
+    protected $company_id;
     
-//    public function __construct()
-//    {
-//      $this->skills = new ArrayCollection();
-//    }
+    /**
+    * @var object $company
+    * @ORM\ManyToOne(targetEntity="Company", inversedBy="users", cascade={"persist"})
+    * @ORM\JoinColumn(name="company_id", referencedColumnName="id")    
+    */
+    protected $company;    
     
-    public function getSkills()
+   /**
+    * @ORM\OneToMany(targetEntity="UserSkills", mappedBy="users")
+    */    
+    private $usersSkills;    
+    
+    public function __construct()
     {
-      return $this->skills;
+      $this->usersSkills = new ArrayCollection();
     }
     
-    public function setSkills(\Triebawerke\SkilleratorBundle\Entity\Skill $skill)
+    public function getCompany()
     {
-      $this->skills[] = $skill;
+      return $this->company;
+    }
+    
+    public function setCompany(Company $company = null)
+    {
+      $this->company = $company;
+    }
+    
+     public function getCompany_Id()
+    {
+      return $this->company_id;
+    }
+    
+    public function setCompany_Id(Company $company_id = null)
+    {
+      $this->company_id = $company_id;
     }
 
     /**
@@ -108,6 +129,11 @@ class User
      * @return string 
      */
     public function getLastname()
+    {
+        return $this->lastname;
+    }
+    
+    public function __toString()
     {
         return $this->lastname;
     }

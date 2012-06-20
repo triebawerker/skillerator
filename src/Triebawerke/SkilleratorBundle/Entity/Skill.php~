@@ -13,7 +13,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * @ORM\Entity
  * @ORM\Table(name="skill")
- * @ORM\ManyToMany(targetEntity="User", mappedBy="skills")
  */
 class Skill {
     /**
@@ -34,6 +33,11 @@ class Skill {
     protected $description;
     
     protected $users;
+    
+   /**
+    * @ORM\OneToMany(targetEntity="UserSkills", mappedBy="skills")
+    */       
+    protected $usersSkills;
   
     /**
      * Get id

@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<h1>User edit</h1>
+<h1>Edit your skills</h1>
 
 <form action="{{ path('userskills_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
     {{ form_widget(edit_form) }}

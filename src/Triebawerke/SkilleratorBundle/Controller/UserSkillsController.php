@@ -68,8 +68,6 @@ var_dump($entity->getSkills()->getName());
     {
         $entity = new UserSkills();
         
-        // set user_id
-        $entity->setUser_id(1);
         $form   = $this->createForm(new MyskillsType(), $entity);
 
         return array(
@@ -88,16 +86,18 @@ var_dump($entity->getSkills()->getName());
     public function createAction()
     {
         $entity  = new UserSkills();
-        $entity->setUserId(1);
-//        $entity->setSkill_Id(1);
+        
+//        $entity->setSkillId(1);
         
         $request = $this->getRequest();
         $form    = $this->createForm(new MyskillsType(), $entity);
 
         $form->bindRequest($request);
-var_dump($form);
+        $entity->setUserId(1);
+//var_dump($entity);
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getEntityManager();
+            var_dump($entity);
             $em->persist($entity);
             $em->flush();
 

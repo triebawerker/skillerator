@@ -6,7 +6,8 @@
 
 {% block content %}
 <h1>Enter your new skill</h1>
-user: {{ entity.user_id }}
+
+for user: {{ entity.userId }}
     <form action="{{ path('userskills_create') }}" method="post" {{ form_enctype(form) }}> 
       {{ form_widget(form) }}
       <input type="submit" />

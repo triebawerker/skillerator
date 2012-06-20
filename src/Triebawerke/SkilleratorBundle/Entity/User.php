@@ -137,4 +137,44 @@ class User
     {
         return $this->lastname;
     }
+
+    /**
+     * Set company_id
+     *
+     * @param integer $companyId
+     */
+    public function setCompanyId($companyId)
+    {
+        $this->company_id = $companyId;
+    }
+
+    /**
+     * Get company_id
+     *
+     * @return integer 
+     */
+    public function getCompanyId()
+    {
+        return $this->company_id;
+    }
+
+    /**
+     * Add usersSkills
+     *
+     * @param Triebawerke\SkilleratorBundle\Entity\UserSkills $usersSkills
+     */
+    public function addUserSkills(\Triebawerke\SkilleratorBundle\Entity\UserSkills $usersSkills)
+    {
+        $this->usersSkills[] = $usersSkills;
+    }
+
+    /**
+     * Get usersSkills
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getUsersSkills()
+    {
+        return $this->usersSkills;
+    }
 }
