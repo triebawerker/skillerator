@@ -169,6 +169,12 @@ company_delete:
 company_update:
     pattern:      /company/update/{id}
     defaults:     { _controller: TriebawerkeSkilleratorBundle:Company:update}     
+
+login:
+    pattern:   /login
+    defaults:  { _controller: TriebawerkeSecurityBundle:Security:login }
+login_check:
+    pattern:   /login_check     
      
 _home:
     resource:     "@TriebawerkeSkilleratorBundle/Controller/HomeController.php"
