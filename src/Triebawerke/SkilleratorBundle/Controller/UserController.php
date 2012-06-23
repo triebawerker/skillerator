@@ -27,7 +27,7 @@ class UserController extends Controller
         $em = $this->getDoctrine()->getEntityManager();
 
         $entities = $em->getRepository('TriebawerkeSkilleratorBundle:User')->findAll();
-        var_dump($entities);
+        
         return array(
               'entities' => $entities,
                     );
@@ -89,6 +89,15 @@ class UserController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getEntityManager();
+             
+            // set password
+            $factory = $this->get('security.encoder_factory');
+
+            $encoder = $factory->getEncoder($entity);
+            $password = $encoder->encodePassword($entity->getPassword(), $entity->getSalt());
+            $entity->setPassword($password);
+            
+            // persist new user
             $em->persist($entity);
             $em->flush();
 
@@ -118,15 +127,8 @@ class UserController extends Controller
             throw $this->createNotFoundException('Unable to find User entity.');
         }
 
-//        $editForm = $this->createForm(new UserType(), $entity);
-        
-        $editForm = $this->createFormBuilder($entity)
-                ->add('name')
-                ->add('lastname')
-                ->add('company')
-                ->getForm();
-        
-        
+        $editForm = $this->createForm(new UserType(), $entity);
+       
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
@@ -149,27 +151,17 @@ class UserController extends Controller
 
         $entity = $em->getRepository('TriebawerkeSkilleratorBundle:User')->find($id);
 
-
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find User entity.');
         }
 
-//        $editForm   = $this->createForm(new UserType(), $entity);
-          $editForm = $this->createFormBuilder($entity)
-          ->add('name')
-          ->add('lastname')
-          ->add('company')
-          ->getForm();
+        $editForm = $this->createForm(new UserType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        $request = $this->getRequest();
-  
+        $request = $this->getRequest();  
 
         $editForm->bindRequest($request);
-//        echo "id: " . $id . PHP_EOL;
-//        var_dump($entity);
-//        var_dump($editForm);
-//        die();
+
         if ($editForm->isValid()) {
             $em->persist($entity);
             $em->flush();

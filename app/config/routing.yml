@@ -174,7 +174,8 @@ login:
     pattern:   /login
     defaults:  { _controller: TriebawerkeSecurityBundle:Security:login }
 login_check:
-    pattern:   /login_check     
+    pattern:   /login_check
+    defaults:  { _controller: TriebawerkeSecurityBundle:Security:login }
      
 _home:
     resource:     "@TriebawerkeSkilleratorBundle/Controller/HomeController.php"

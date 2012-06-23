@@ -1,33 +1,46 @@
 security:
-    encoders:
-        Symfony\Component\Security\Core\User\User: plaintext
 
     role_hierarchy:
         ROLE_ADMIN:       ROLE_USER
         ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     providers:
-        in_memory:
-            users:
-                user:  { password: userpass, roles: [ 'ROLE_USER' ] }
-                admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
+        main:
+          entity: { class: Triebawerke\SkilleratorBundle\Entity\User, property: name }
+#        in_memory:
+#            users:
+#                testuser: { password: testpassword, roles: [ 'ROLE_USER' ] }
+#                admin: { password: micha, roles: [ 'ROLE_ADMIN' ] }
+      
+    encoders:
+#        Symfony\Component\Security\Core\User\User: plaintext
+        Triebawerke\SkilleratorBundle\Entity\User:
+          algorithm: sha1
+          iterations: 1
+          encode_as_base64: false
 
     firewalls:
-        dev:
-            pattern:  ^/(_(profiler|wdt)|css|images|js)/
-            security: false
-
-        login:
-            pattern:  ^/
+        secured_area:
+            pattern: ^/
             anonymous: ~
             form_login:
                 login_path:  /login
                 check_path:  /login_check
+        dev:
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            security: false
 
             #anonymous: ~
             #http_basic:
             #    realm: "Secured Demo Area"
-
+ #access_control:           
+ #       - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
+ #       - { path: ^/_internal, roles: IS_AUTHENTICATED_ANONYMOUSLY, ip: 127.0.0.1}
     access_control:
-        #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
-        #- { path: ^/_internal, roles: IS_AUTHENTICATED_ANONYMOUSLY, ip: 127.0.0.1 }
+        - { path: ^/skills, roles: ROLE_USER}
+        - { path: ^/user, roles: ROLE_USER}
+        - { path: ^/level, roles: ROLE_USER}
+        - { path: ^/certificate, roles: ROLE_USER}
+        - { path: ^/userskill, roles: ROLE_USER}
+#        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+#        - { path: ^/_internal, roles: IS_AUTHENTICATED_ANONYMOUSLY }

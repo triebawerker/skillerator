@@ -28,8 +28,6 @@ class UserSkillsController extends Controller
         ->getRepository('TriebawerkeSkilleratorBundle:UserSkills')
         ->findAll();
         
-        var_dump($userSkills);
-        
         return array('entities' => $userSkills);
     }
 

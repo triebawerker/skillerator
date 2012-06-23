@@ -5,6 +5,7 @@ namespace Triebawerke\SkilleratorBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Triebawerke\SkilleratorBundle\Entity\User
@@ -13,7 +14,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="user")
  *
  */
-class User
+class User implements UserInterface, \Serializable
 {
     /**
      * @var integer $id
@@ -22,21 +23,43 @@ class User
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string $name
      *
      * @ORM\Column(name="name", type="string", length=50)
      */
-    private $name;
+    protected $name;
 
     /**
      * @var string $lastname
      *
      * @ORM\Column(name="lastname", type="string", length=50)
      */
-    private $lastname;
+    protected $lastname;
+    
+    /**
+     * @var string $password
+     *
+     * @ORM\Column(name="password", type="string", length=50)
+     */
+    protected $password;   
+    
+    /**
+     * @ORM\Column(type="string", length=32)
+     */
+    protected $salt;
+    
+    /**
+     * @ORM\Column(name="is_active", type="boolean")
+     */
+    protected $isActive;
+    
+    
+    protected $role = array('ROLE_USER');
+
+
     
     /**
      * @var int $company_id
@@ -56,11 +79,11 @@ class User
    /**
     * @ORM\OneToMany(targetEntity="UserSkills", mappedBy="users")
     */    
-    private $usersSkills;    
-    
     public function __construct()
     {
       $this->usersSkills = new ArrayCollection();
+      $this->isActive = true;
+      $this->salt = md5(time());
     }
     
     public function getCompany()
@@ -114,6 +137,26 @@ class User
     }
 
     /**
+     * Set lastname
+     *
+     * @param string $lastname
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+    }
+
+    /**
+     * Get lastname
+     *
+     * @return string 
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+    
+        /**
      * Set lastname
      *
      * @param string $lastname
@@ -177,4 +220,41 @@ class User
     {
         return $this->usersSkills;
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function equals(UserInterface $user)
+    {
+        return $this->name === $user->name();
+    }
+
+  public function eraseCredentials() {
+    // not implemented yet
+    return null;
+  }
+
+  public function getRoles() {
+    // not implemented yet
+    return $this->role;
+  }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSalt()
+    {
+        return $this->salt;
+    }
+
+  public function getUsername() {
+    return $this->lastname;
+  }
+
+  public function serialize() {
+  }
+
+  public function unserialize($serialized) {
+    unserialize($serialized);
+  }
 }
