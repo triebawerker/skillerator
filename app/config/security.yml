@@ -6,7 +6,7 @@ security:
 
     providers:
         main:
-          entity: { class: Triebawerke\SkilleratorBundle\Entity\User, property: name }
+          entity: { class: Triebawerke\SkilleratorBundle\Entity\User, property: username }
 #        in_memory:
 #            users:
 #                testuser: { password: testpassword, roles: [ 'ROLE_USER' ] }

@@ -27,18 +27,18 @@ class User implements AdvancedUserInterface, \Serializable
     protected $id;
 
     /**
-     * @var string $name
+     * @var string $username
      *
-     * @ORM\Column(name="name", type="string", length=50)
+     * @ORM\Column(name="username", type="string", length=50)
      */
-    protected $name;
+    protected $username;
 
     /**
-     * @var string $lastname
+     * @var string $email
      *
-     * @ORM\Column(name="lastname", type="string", length=50)
+     * @ORM\Column(name="email", type="string", length=50)
      */
-    protected $lastname;
+    protected $email;
     
     /**
      * @var string $password
@@ -122,9 +122,9 @@ class User implements AdvancedUserInterface, \Serializable
      *
      * @param string $name
      */
-    public function setName($name)
+    public function setUsername($username)
     {
-        $this->name = $name;
+        $this->name = $username;
     }
 
     /**
@@ -132,15 +132,15 @@ class User implements AdvancedUserInterface, \Serializable
      *
      * @return string 
      */
-    public function getName()
+    public function getUsername()
     {
-        return $this->name;
+        return $this->username;
     }
 
     /**
-     * Set lastname
+     * Set password
      *
-     * @param string $lastname
+     * @param string $password
      */
     public function setPassword($password)
     {
@@ -148,7 +148,7 @@ class User implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Get lastname
+     * Get password
      *
      * @return string 
      */
@@ -162,9 +162,9 @@ class User implements AdvancedUserInterface, \Serializable
      *
      * @param string $lastname
      */
-    public function setLastname($lastname)
+    public function setEmail($email)
     {
-        $this->lastname = $lastname;
+        $this->lastname = $email;
     }
 
     /**
@@ -172,14 +172,14 @@ class User implements AdvancedUserInterface, \Serializable
      *
      * @return string 
      */
-    public function getLastname()
+    public function getEmail()
     {
-        return $this->lastname;
+        return $this->email;
     }
     
     public function __toString()
     {
-        return $this->lastname;
+        return $this->username;
     }
 
     /**
@@ -224,12 +224,10 @@ class User implements AdvancedUserInterface, \Serializable
 
 
     public function eraseCredentials() {
-      // not implemented yet
       return null;
     }
 
     public function getRoles() {
-      // not implemented yet
       return $this->role;
     }
 
@@ -239,21 +237,6 @@ class User implements AdvancedUserInterface, \Serializable
     public function getSalt()
     {
         return $this->salt;
-    }
-    
-    /**
-     *
-     * @return string 
-     */
-    public function getUsername() {
-      return $this->lastname;
-    }
-
-    public function serialize() {
-    }
-
-    public function unserialize($serialized) {
-      unserialize($serialized);
     }
 
     public function isAccountNonExpired() {
@@ -267,12 +250,20 @@ class User implements AdvancedUserInterface, \Serializable
     public function isCredentialsNonExpired() {
       return true;
     }
-
     public function isEnabled() {
       return $this->isActive;
     }
 
     public function equals(UserInterface $user) {
-      return $user->name === $this->name;
+      return $user->username === $this->username;
     }
+    
+    public function serialize() {
+      return serialize(array($this->id, $this->username, $this->password));
+    }
+
+    public function unserialize($serialized) {
+      return list($this->id, $this->username, $this->password) = unserialize($serialized);
+    }
+
 }
