@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
 /**
  * Triebawerke\SkilleratorBundle\Entity\User
@@ -14,7 +15,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @ORM\Table(name="user")
  *
  */
-class User implements UserInterface, \Serializable
+class User implements AdvancedUserInterface, \Serializable
 {
     /**
      * @var integer $id
@@ -221,40 +222,57 @@ class User implements UserInterface, \Serializable
         return $this->usersSkills;
     }
 
-    /**
-     * @inheritDoc
-     */
-    public function equals(UserInterface $user)
-    {
-        return $this->name === $user->name();
+
+    public function eraseCredentials() {
+      // not implemented yet
+      return null;
     }
 
-  public function eraseCredentials() {
-    // not implemented yet
-    return null;
-  }
-
-  public function getRoles() {
-    // not implemented yet
-    return $this->role;
-  }
+    public function getRoles() {
+      // not implemented yet
+      return $this->role;
+    }
 
     /**
-     * @inheritDoc
-     */
+    * @inheritDoc
+    */
     public function getSalt()
     {
         return $this->salt;
     }
+    
+    /**
+     *
+     * @return string 
+     */
+    public function getUsername() {
+      return $this->lastname;
+    }
 
-  public function getUsername() {
-    return $this->lastname;
-  }
+    public function serialize() {
+    }
 
-  public function serialize() {
-  }
+    public function unserialize($serialized) {
+      unserialize($serialized);
+    }
 
-  public function unserialize($serialized) {
-    unserialize($serialized);
-  }
+    public function isAccountNonExpired() {
+      return true;
+    }
+
+    public function isAccountNonLocked() {
+      return true;
+    }
+
+    public function isCredentialsNonExpired() {
+      return true;
+    }
+
+    public function isEnabled() {
+      return $this->isActive;
+    }
+
+    public function equals(UserInterface $user) {
+      return $user->name === $this->name;
+    }
 }

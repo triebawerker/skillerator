@@ -13,6 +13,7 @@
             <th>Lastname</th>
             <th>Company</th>
             <th>Actions</th>
+            <th>&nbsp;</th>
         </tr>
     </thead>
     <tbody>
@@ -22,16 +23,8 @@
             <td>{{ entity.name }}</td>
             <td>{{ entity.lastname }}</td>
             <td>{{ entity.company.name }}</td>
-            <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('user_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('user_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
-            </td>
+            <td><a href="{{ path('user_show', { 'id': entity.id }) }}">show</a></td>
+            <td><a href="{{ path('user_edit', { 'id': entity.id }) }}">edit</a></td>
         </tr>
     {% endfor %}
     </tbody>
