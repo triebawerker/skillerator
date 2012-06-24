@@ -110,7 +110,7 @@ userskills_new:
     defaults:     { _controller: TriebawerkeSkilleratorBundle:UserSkills:new} 
 
 userskills_delete:
-    pattern:      /userskills/delete
+    pattern:      /userskills/delete/{id}
     defaults:     { _controller: TriebawerkeSkilleratorBundle:UserSkills:delete} 
 
 user:

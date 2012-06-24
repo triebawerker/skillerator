@@ -13,7 +13,7 @@ use Symfony\Component\Security\Core\User\AdvancedUserInterface;
  *
  * @ORM\Entity
  * @ORM\Table(name="user")
- *
+ * @ORM\Entity(repositoryClass="Triebawerke\SkilleratorBundle\Entity\UserRepository")
  */
 class User implements AdvancedUserInterface, \Serializable
 {
@@ -124,7 +124,7 @@ class User implements AdvancedUserInterface, \Serializable
      */
     public function setUsername($username)
     {
-        $this->name = $username;
+        $this->username = $username;
     }
 
     /**
@@ -164,7 +164,7 @@ class User implements AdvancedUserInterface, \Serializable
      */
     public function setEmail($email)
     {
-        $this->lastname = $email;
+        $this->email = $email;
     }
 
     /**

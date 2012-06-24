@@ -24,10 +24,14 @@ class UserSkillsController extends Controller
      */
     public function indexAction()
     {
+        $user = $this->get('security.context')->getToken()->getUser();
         $userSkills = $this->getDoctrine()
-        ->getRepository('TriebawerkeSkilleratorBundle:UserSkills')
-        ->findAll();
+          ->getRepository('TriebawerkeSkilleratorBundle:UserSkills')
+          ->findAll();
         
+        $userSkills = $this->getDoctrine()
+                ->getRepository('TriebawerkeSkilleratorBundle:UserSkills')
+                ->loadSkillsByUserId($user->getId());
         return array('entities' => $userSkills);
     }
 

@@ -8,8 +8,7 @@ use Symfony\Component\Form\FormBuilder;
 class UserType extends AbstractType
 {
     public function buildForm(FormBuilder $builder, array $options)
-    {
-     
+    {   
       
         $builder
             ->add('username')
@@ -17,7 +16,6 @@ class UserType extends AbstractType
             ->add('password')                
             ->add('company')
              ;
-
     }
     
     public function getDefaultOptions(array $options) 

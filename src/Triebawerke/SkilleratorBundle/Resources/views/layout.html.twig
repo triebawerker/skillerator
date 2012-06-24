@@ -24,8 +24,8 @@
                     <em>Notice</em>: {{ app.session.flash('notice') }}
                 </div>
             {% endif %}
-
             {% block content_header %}
+
                 <ul id="menu">
                     {% block content_header_more %}
                         <li><a href="{{ path('_welcome') }}">Home</a></li>
