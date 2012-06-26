@@ -176,7 +176,10 @@ login:
 login_check:
     pattern:   /login_check
     defaults:  { _controller: TriebawerkeSecurityBundle:Security:login }
-     
+    
+logout:
+    pattern:   /logout     
+    
 _home:
     resource:     "@TriebawerkeSkilleratorBundle/Controller/HomeController.php"
     type:         annotation
