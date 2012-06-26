@@ -15,8 +15,7 @@ class CertificateType extends AbstractType
         ;
     }
 
-    public function getName()
-    {
-        return 'triebawerke_skilleratorbundle_certificatetype';
+    public function getName() {
+      return 'triebawerke_skilleratorbundle_certificatetype';
     }
 }

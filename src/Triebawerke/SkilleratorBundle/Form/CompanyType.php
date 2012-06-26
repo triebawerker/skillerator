@@ -24,9 +24,8 @@ class CompanyType extends AbstractType
       ));
     }
 
-    public function getName()
-    {
-        return 'Company';
+    public function getName() {
+      return 'Company';
     }
 }
 

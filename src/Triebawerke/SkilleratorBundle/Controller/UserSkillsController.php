@@ -10,25 +10,22 @@ use Triebawerke\SkilleratorBundle\Entity\UserSkills;
 use Triebawerke\SkilleratorBundle\Form\MyskillsType;
 
 /**
- * User controller.
+ * UserSkills controller.
  *
- * @Route("/user")
+ * @Route("/userskills")
  */
 class UserSkillsController extends Controller
 {
     /**
      * Lists all User entities.
      *
-     * @Route("/", name="user")
+     * @Route("/userskills", name="userskills")
      * @Template()
      */
     public function indexAction()
     {
         $user = $this->get('security.context')->getToken()->getUser();
-        $userSkills = $this->getDoctrine()
-          ->getRepository('TriebawerkeSkilleratorBundle:UserSkills')
-          ->findAll();
-        
+       
         $userSkills = $this->getDoctrine()
                 ->getRepository('TriebawerkeSkilleratorBundle:UserSkills')
                 ->loadSkillsByUserId($user->getId());
@@ -83,7 +80,7 @@ var_dump($entity->getSkills()->getName());
      *
      * @Route("/create", name="user_create")
      * @Method("post")
-     * @Template("TriebawerkeSkilleratorBundle:User:new.html.twig")
+     * @Template("TriebawerkeUserBundle:User:new.html.twig")
      */
     public function createAction()
     {
@@ -144,7 +141,7 @@ var_dump($entity->getSkills()->getName());
      *
      * @Route("/{id}/update", name="user_update")
      * @Method("post")
-     * @Template("TriebawerkeSkilleratorBundle:User:edit.html.twig")
+     * @Template("TriebawerkeUserBundle:User:edit.html.twig")
      */
     public function updateAction($id)
     {

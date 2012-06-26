@@ -1,6 +1,6 @@
 <?php
 
-namespace Triebawerke\SkilleratorBundle\Entity;
+namespace Triebawerke\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -9,11 +9,11 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
 /**
- * Triebawerke\SkilleratorBundle\Entity\User
+ * Triebawerke\UserBundle\Entity\User
  *
  * @ORM\Entity
  * @ORM\Table(name="user")
- * @ORM\Entity(repositoryClass="Triebawerke\SkilleratorBundle\Entity\UserRepository")
+ * @ORM\Entity(repositoryClass="Triebawerke\UserBundle\Entity\UserRepository")
  */
 class User implements AdvancedUserInterface, \Serializable
 {
@@ -72,13 +72,13 @@ class User implements AdvancedUserInterface, \Serializable
     
     /**
     * @var object $company
-    * @ORM\ManyToOne(targetEntity="Company", inversedBy="users", cascade={"persist"})
+    * @ORM\ManyToOne(targetEntity="Triebawerke\SkilleratorBundle\Entity\Company", inversedBy="users", cascade={"persist"})
     * @ORM\JoinColumn(name="company_id", referencedColumnName="id")    
     */
     protected $company;    
     
    /**
-    * @ORM\OneToMany(targetEntity="UserSkills", mappedBy="users")
+    * @ORM\OneToMany(targetEntity="Triebawerke\SkilleratorBundle\Entity\UserSkills", mappedBy="users")
     */    
     public function __construct()
     {

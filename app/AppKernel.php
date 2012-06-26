@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
             new Triebawerke\SkilleratorBundle\TriebawerkeSkilleratorBundle(),
             new Triebawerke\SecurityBundle\TriebawerkeSecurityBundle(),
+            new Triebawerke\UserBundle\TriebawerkeUserBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

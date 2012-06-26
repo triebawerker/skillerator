@@ -31,9 +31,9 @@ class LevelController extends Controller
      * @Route("/new", name="_level_new")
      * @Template()
      */
-    public function newAction(Request $request)
-    {
-        $level = new Level();
+    public function newAction()
+    {    
+      $level = new Level();
       
         $form   = $this->createForm(new CertificateType(), $level);
         

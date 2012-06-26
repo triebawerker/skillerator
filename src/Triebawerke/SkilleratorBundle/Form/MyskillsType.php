@@ -13,7 +13,7 @@ class MyskillsType extends AbstractType
                   'class' => 'TriebawerkeSkilleratorBundle:Skill',
                   ))
             ->add('users', 'entity', array(
-                  'class' => 'TriebawerkeSkilleratorBundle:User',
+                  'class' => 'TriebawerkeUserBundle:User',
                   ))
                   ; 
 

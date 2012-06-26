@@ -7,7 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Triebawerke\SkilleratorBundle\Entity\User
+ * Triebawerke\SkilleratorBundle\Entity\UserSkills
  *
  * @ORM\Entity
  * @ORM\Table(name="user_skill")
@@ -46,7 +46,7 @@ class UserSkills
     private $skills;
     
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="userSkill", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Triebawerke\UserBundle\Entity\User", inversedBy="userSkill", cascade={"persist"})
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $users;
@@ -126,9 +126,9 @@ class UserSkills
     /**
      * Set users
      *
-     * @param Triebawerke\SkilleratorBundle\Entity\User $users
+     * @param Triebawerke\UserBundle\Entity\User $users
      */
-    public function setUsers(\Triebawerke\SkilleratorBundle\Entity\User $users)
+    public function setUsers(\Triebawerke\UserBundle\Entity\User $users)
     {
         $this->users = $users;
     }
@@ -136,7 +136,7 @@ class UserSkills
     /**
      * Get users
      *
-     * @return Triebawerke\SkilleratorBundle\Entity\User 
+     * @return Triebawerke\UserBundle\Entity\User 
      */
     public function getUsers()
     {

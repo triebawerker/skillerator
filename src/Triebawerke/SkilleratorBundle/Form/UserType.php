@@ -22,7 +22,7 @@ class UserType extends AbstractType
     public function getDefaultOptions(array $options) 
     { 
     return array( 
-    'data_class' => 'Triebawerke\SkilleratorBundle\Entity\User', 
+    'data_class' => 'Triebawerke\UserBundle\Entity\User', 
     ); 
     } 
 

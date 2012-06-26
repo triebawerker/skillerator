@@ -11,7 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Triebawerke\SkilleratorBundle\Entity\CompanyRepository")
- * @ORM\OneToMany(targetEntity="User", mappedBy="company")
+ * @ORM\OneToMany(targetEntity="Triebawerke\UserBundle\User", mappedBy="company")
  */
 class Company
 {

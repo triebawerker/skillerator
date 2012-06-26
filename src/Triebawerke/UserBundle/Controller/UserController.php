@@ -1,13 +1,13 @@
 <?php
 
-namespace Triebawerke\SkilleratorBundle\Controller;
+namespace Triebawerke\UserBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Triebawerke\SkilleratorBundle\Entity\User;
-use Triebawerke\SkilleratorBundle\Form\UserType;
+use Triebawerke\UserBundle\Entity\User;
+use Triebawerke\UserBundle\Form\UserType;
 
 /**
  * User controller.
@@ -26,7 +26,7 @@ class UserController extends Controller
     {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $entities = $em->getRepository('TriebawerkeSkilleratorBundle:User')->findAll();
+        $entities = $em->getRepository('TriebawerkeUserBundle:User')->findAll();
         
         return array(
               'entities' => $entities,
@@ -43,7 +43,7 @@ class UserController extends Controller
     {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $entity = $em->getRepository('TriebawerkeSkilleratorBundle:User')->find($id);
+        $entity = $em->getRepository('TriebawerkeUserBundle:User')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find User entity.');
@@ -78,7 +78,7 @@ class UserController extends Controller
      *
      * @Route("/create", name="user_create")
      * @Method("post")
-     * @Template("TriebawerkeSkilleratorBundle:User:new.html.twig")
+     * @Template("TriebawerkeUserBundle:User:new.html.twig")
      */
     public function createAction()
     {
@@ -121,7 +121,7 @@ class UserController extends Controller
     {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $entity = $em->getRepository('TriebawerkeSkilleratorBundle:User')->find($id);
+        $entity = $em->getRepository('TriebawerkeUserBundle:User')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find User entity.');
@@ -143,13 +143,13 @@ class UserController extends Controller
      *
      * @Route("/{id}/update", name="user_update")
      * @Method("post")
-     * @Template("TriebawerkeSkilleratorBundle:User:edit.html.twig")
+     * @Template("TriebawerkeUserBundle:User:edit.html.twig")
      */
     public function updateAction($id)
     {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $entity = $em->getRepository('TriebawerkeSkilleratorBundle:User')->find($id);
+        $entity = $em->getRepository('TriebawerkeUserBundle:User')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find User entity.');
@@ -191,7 +191,7 @@ class UserController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getEntityManager();
-            $entity = $em->getRepository('TriebawerkeSkilleratorBundle:User')->find($id);
+            $entity = $em->getRepository('TriebawerkeUserBundle:User')->find($id);
 
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find User entity.');
@@ -211,4 +211,9 @@ class UserController extends Controller
             ->getForm()
         ;
     }
+    
+    public function displayLoginUser()
+    {
+      
+    }        
 }

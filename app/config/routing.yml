@@ -27,7 +27,7 @@ _skills_edit:
 
 _skills_delete:
     pattern:      /skills/delete/{id}
-    defaults:     { _controller: TriebawerkeSkilleratorBundle:kills:delete}
+    defaults:     { _controller: TriebawerkeSkilleratorBundle:Skills:delete}
 
 _level_new:
     pattern:      /level/new
@@ -115,31 +115,31 @@ userskills_delete:
 
 user:
     pattern:      /user
-    defaults:     { _controller: TriebawerkeSkilleratorBundle:User:index}        
+    defaults:     { _controller: TriebawerkeUserBundle:User:index}        
     
 user_show:
     pattern:      /user/show/{id}
-    defaults:     { _controller: TriebawerkeSkilleratorBundle:User:show}
+    defaults:     { _controller: TriebawerkeUserBundle:User:show}
     
 user_edit:
     pattern:      /user/edit/{id}
-    defaults:     { _controller: TriebawerkeSkilleratorBundle:User:edit}
+    defaults:     { _controller: TriebawerkeUserBundle:User:edit}
     
 user_create:
     pattern:      /user/create
-    defaults:     { _controller: TriebawerkeSkilleratorBundle:User:create}
+    defaults:     { _controller: TriebawerkeUserBundle:User:create}
 
 user_new:
     pattern:      /user/new
-    defaults:     { _controller: TriebawerkeSkilleratorBundle:User:new} 
+    defaults:     { _controller: TriebawerkeUserBundle:User:new} 
 
 user_delete:
     pattern:      /user/delete
-    defaults:     { _controller: TriebawerkeSkilleratorBundle:User:delete}      
+    defaults:     { _controller: TriebawerkeUserBundle:User:delete}      
 
 user_update:
     pattern:      /user/update/{id}
-    defaults:     { _controller: TriebawerkeSkilleratorBundle:User:update}
+    defaults:     { _controller: TriebawerkeUserBundle:User:update}
 
      
 company:
