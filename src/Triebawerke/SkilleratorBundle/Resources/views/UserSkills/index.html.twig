@@ -13,6 +13,8 @@
             <th>SkillId</th>            
             <th>Name</th>
             <th>Description</th>
+            <th>Level</th>
+            <th>Certificate</th>
             <th>Actions</th>
             <th>&nbsp;</th>
         </tr>
@@ -23,6 +25,8 @@
             <td>{{ entity.skills.id }}</td>
             <td>{{ entity.skills.name}}</td>
             <td>{{ entity.skills.description}}</td>
+            <td>{{ entity.levels.name}}</td>
+            <td>{{ entity.certificates.name}}</td>
             <td><a href="{{ path('userskills_show', { 'id': entity.id }) }}">show</a></td>
             <td><a href="{{ path('userskills_edit', { 'id': entity.id }) }}">edit</a></td>       
         </tr>

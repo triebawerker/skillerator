@@ -30,6 +30,11 @@ class Certificate {
      * @ORM\Column(type="text") 
      */
     protected $description;
+    
+   /**
+    * @ORM\OneToMany(targetEntity="UserSkills", mappedBy="certificates")
+    */       
+    protected $userSkill;
   
     /**
      * Get id
@@ -79,5 +84,10 @@ class Certificate {
     public function getDescription()
     {
         return $this->description;
+    }
+    
+    public function __toString()
+    {
+      return $this->name;
     }
 }

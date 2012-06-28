@@ -38,6 +38,11 @@ class Skill {
     * @ORM\OneToMany(targetEntity="UserSkills", mappedBy="skills")
     */       
     protected $usersSkills;
+    
+//    public function __construct()
+//    {
+//        $this->usersSkills = new \Doctrine\Common\Collections\ArrayCollection();
+//    }
   
     /**
      * Get id
@@ -92,10 +97,6 @@ class Skill {
     public function __toString()
     {
       return $this->name;
-    }
-    public function __construct()
-    {
-        $this->usersSkills = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
     /**

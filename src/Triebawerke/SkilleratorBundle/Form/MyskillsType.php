@@ -12,6 +12,12 @@ class MyskillsType extends AbstractType
     $builder->add('skills', 'entity', array(
                   'class' => 'TriebawerkeSkilleratorBundle:Skill',
                   ))
+            ->add('levels', 'entity', array(
+                  'class' => 'TriebawerkeSkilleratorBundle:Level',
+                  ))
+            ->add('certificates', 'entity', array(
+                  'class' => 'TriebawerkeSkilleratorBundle:Certificate',
+                  ))
             ->add('users', 'entity', array(
                   'class' => 'TriebawerkeUserBundle:User',
                   ))

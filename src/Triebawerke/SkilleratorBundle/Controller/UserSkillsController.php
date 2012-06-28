@@ -25,10 +25,12 @@ class UserSkillsController extends Controller
     public function indexAction()
     {
         $user = $this->get('security.context')->getToken()->getUser();
-       
         $userSkills = $this->getDoctrine()
                 ->getRepository('TriebawerkeSkilleratorBundle:UserSkills')
                 ->loadSkillsByUserId($user->getId());
+        
+//        var_dump($userSkills);
+//        die();
         return array('entities' => $userSkills);
     }
 
@@ -43,7 +45,6 @@ class UserSkillsController extends Controller
         $em = $this->getDoctrine()->getEntityManager();
 
         $entity = $em->getRepository('TriebawerkeSkilleratorBundle:UserSkills')->find($id);
-var_dump($entity->getSkills()->getName());
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find User entity.');
         }
@@ -96,7 +97,6 @@ var_dump($entity->getSkills()->getName());
 //var_dump($entity);
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getEntityManager();
-            var_dump($entity);
             $em->persist($entity);
             $em->flush();
 

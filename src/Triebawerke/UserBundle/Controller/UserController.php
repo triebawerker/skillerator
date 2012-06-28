@@ -214,6 +214,7 @@ class UserController extends Controller
     
     public function displayLoginUser()
     {
-      
+        $user = $this->get('security.context')->getToken()->getUser();
+        return array('username' => $user->getUsername());
     }        
 }

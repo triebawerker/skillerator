@@ -40,6 +40,13 @@ class UserSkills
     private $skill_id;
     
     /**
+     * @var string $level_id
+     *
+     * @ORM\Column(name="level_id", type="integer")
+     */
+    private $level_id;
+    
+    /**
      * @ORM\ManyToOne(targetEntity="Skill", inversedBy="userSkill", cascade={"persist"})
      * @ORM\JoinColumn(name="skill_id", referencedColumnName="id") 
      */    
@@ -51,9 +58,20 @@ class UserSkills
      */
     private $users;
     
-
-
     /**
+     * @ORM\ManyToOne(targetEntity="Level", inversedBy="userSkill", cascade={"persist"})
+     * @ORM\JoinColumn(name="level_id", referencedColumnName="id") 
+     */    
+    private $levels;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Certificate", inversedBy="userSkill", cascade={"persist"})
+     * @ORM\JoinColumn(name="certificate_id", referencedColumnName="id") 
+     */    
+    private $certificates;
+
+
+        /**
      * Get id
      *
      * @return integer 
@@ -84,25 +102,25 @@ class UserSkills
     }
 
     /**
-     * Set skill_id
+     * Set users
      *
-     * @param integer $skillId
+     * @param \Triebawerke\UserBundle\Entity\User $users
      */
-    public function setSkillId($skillId)
+    public function setUsers(\Triebawerke\UserBundle\Entity\User $users)
     {
-        $this->skill_id = $skillId;
+        $this->users = $users;
     }
 
     /**
-     * Get skill_id
+     * Get $users
      *
-     * @return integer 
+     * @return \Triebawerke\UserBundle\Entity\User 
      */
-    public function getSkillId()
+    public function getUsers()
     {
-        return $this->skill_id;
+        return $this->users;
     }
-
+    
     /**
      * Set skills
      *
@@ -122,24 +140,45 @@ class UserSkills
     {
         return $this->skills;
     }
-
+    
     /**
-     * Set users
+     * Set level
      *
-     * @param Triebawerke\UserBundle\Entity\User $users
+     * @param \Triebawerke\SkilleratorBundle\Entity\Level $level
      */
-    public function setUsers(\Triebawerke\UserBundle\Entity\User $users)
+    public function setLevels(\Triebawerke\SkilleratorBundle\Entity\Level $level)
     {
-        $this->users = $users;
+        $this->levels = $level;
     }
 
     /**
-     * Get users
+     * Get level
      *
-     * @return Triebawerke\UserBundle\Entity\User 
+     * @return \Triebawerke\SkilleratorBundle\Entity\Level 
      */
-    public function getUsers()
+    public function getLevels()
     {
-        return $this->users;
+        return $this->levels;
     }
+    
+    /**
+     * Get certificates
+     *
+     * @return Triebawerke\SkilleratorBundle\Entity\Certificate
+     */
+    public function getCertificates()
+    {
+        return $this->certificates;
+    }
+
+    /**
+     * Set certificates
+     *
+     * @param Triebawerke\SkilleratorBundle\Entity\Certificate $certificate
+     */
+    public function setCertificates(\Triebawerke\SkilleratorBundle\Entity\Certificate $certificates)
+    {
+        $this->certificates = $certificates;
+    }
+
 }

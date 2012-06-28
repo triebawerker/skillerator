@@ -5,6 +5,7 @@
  * @author micha
  */
 namespace Triebawerke\SkilleratorBundle\Entity;
+use Doctrine\Common\Collections\ArrayCollection;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -31,7 +32,12 @@ class Level {
      * @ORM\Column(type="text") 
      */
     protected $description;
-  
+
+    /**
+    * @ORM\OneToMany(targetEntity="UserSkills", mappedBy="levels")
+    */       
+    protected $userSkill;
+    
     /**
      * Get id
      *
@@ -80,5 +86,10 @@ class Level {
     public function getDescription()
     {
         return $this->description;
+    }
+    
+    public function __toString()
+    {
+      return $this->name;
     }
 }
