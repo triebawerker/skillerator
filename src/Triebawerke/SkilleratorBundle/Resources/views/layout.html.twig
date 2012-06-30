@@ -10,7 +10,7 @@
         <div id="symfony-wrapper">
             <div id="symfony-header">
                 <a href="{{ path('_welcome') }}">
-                    <img src="{{ asset('bundles/acmedemo/images/logo.gif') }}" alt="Symfony">
+                    <img src="{{ asset('bundles/triebawerkeskillerator/images/logo.png') }}" alt="Symfony">
                 </a>
                 <form id="symfony-search" method="GET" action="http://symfony.com/search">
                     <label for="symfony-search-field"><span>Search on Symfony Website</span></label>
@@ -28,10 +28,16 @@
 {% if is_granted("ROLE_USER") %}
     Hi {{ app.user.username }}
 {% endif %}
+
+{% if is_granted("ROLE_USER") %}
+    <a href="{{ path('logout') }}">logout</a>
+{% elseif is_granted("IS_AUTHENTICATED_ANONYMOUSLY") %}
+    <a href="{{ path('login') }}">login</a>
+{% endif %}
+
                 <ul id="menu">
                     {% block content_header_more %}
-                        <li><a href="{{ path('_welcome') }}">Home</a></li>
-                        <li><a href="{{ path('logout') }}">logout</a></li>
+                        <li><a class="symfony-button-green" href="{{ path('_welcome') }}">Home</a></li>
                         <li><a class="symfony-button-green" href="{{ path('_skills') }}">Skills</a></li>
                         <li><a class="symfony-button-green" href="{{ path('_level') }}">Level</a></li>
                         <li><a class="symfony-button-green" href="{{ path('userskills') }}">My skills</a></li>

@@ -21,7 +21,12 @@ class MyskillsType extends AbstractType
             ->add('users', 'entity', array(
                   'class' => 'TriebawerkeUserBundle:User',
                   ))
-                  ; 
+                  
+    
+            ->add('goals', 'entity', array(
+              'class' => 'TriebawerkeSkilleratorBundle:Goal',
+              ))
+              ; 
 
     }
 

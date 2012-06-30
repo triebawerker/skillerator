@@ -47,6 +47,13 @@ class UserSkills
     private $level_id;
     
     /**
+     * @var string $goal_id
+     *
+     * @ORM\Column(name="goal_id", type="integer")
+     */
+    private $goal_id;
+    
+    /**
      * @ORM\ManyToOne(targetEntity="Skill", inversedBy="userSkill", cascade={"persist"})
      * @ORM\JoinColumn(name="skill_id", referencedColumnName="id") 
      */    
@@ -69,7 +76,12 @@ class UserSkills
      * @ORM\JoinColumn(name="certificate_id", referencedColumnName="id") 
      */    
     private $certificates;
-
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Goal", inversedBy="userSkill", cascade={"persist"})
+     * @ORM\JoinColumn(name="goal_id", referencedColumnName="id") 
+     */    
+    private $goals;
 
         /**
      * Get id
@@ -179,6 +191,26 @@ class UserSkills
     public function setCertificates(\Triebawerke\SkilleratorBundle\Entity\Certificate $certificates)
     {
         $this->certificates = $certificates;
+    }
+    
+    /**
+     * Get goals
+     *
+     * @return Triebawerke\SkilleratorBundle\Entity\Goal
+     */
+    public function getGoals()
+    {
+        return $this->goals;
+    }
+
+    /**
+     * Set goals
+     *
+     * @param Triebawerke\SkilleratorBundle\Entity\Goal $goals
+     */
+    public function setGoals(\Triebawerke\SkilleratorBundle\Entity\Goal $goals)
+    {
+        $this->goals = $goals;
     }
 
 }
