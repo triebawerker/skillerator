@@ -18,9 +18,9 @@ class MyskillsType extends AbstractType
             ->add('certificates', 'entity', array(
                   'class' => 'TriebawerkeSkilleratorBundle:Certificate',
                   ))
-            ->add('users', 'entity', array(
-                  'class' => 'TriebawerkeUserBundle:User',
-                  ))
+//            ->add('users', 'entity', array(
+//                  'class' => 'TriebawerkeUserBundle:User',
+//                  ))
                   
     
             ->add('goals', 'entity', array(

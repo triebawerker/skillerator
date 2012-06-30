@@ -10,14 +10,9 @@
         <div id="symfony-wrapper">
             <div id="symfony-header">
                 <a href="{{ path('_welcome') }}">
-                    <img src="{{ asset('bundles/triebawerkeskillerator/images/logo.png') }}" alt="Symfony">
+                    <img src="{{ asset('bundles/triebawerkeskillerator/images/juggler.png') }}" alt="Symfony">
                 </a>
-                <form id="symfony-search" method="GET" action="http://symfony.com/search">
-                    <label for="symfony-search-field"><span>Search on Symfony Website</span></label>
-                    <input name="q" id="symfony-search-field" type="search" placeholder="Search on Symfony website" class="medium_txt">
-                    <input type="submit" class="symfony-button-grey" value="OK" />
-                </form>
-            </div>
+          
 
             {% if app.session.flash('notice') %}
                 <div class="flash-message">
@@ -35,7 +30,7 @@
     <a href="{{ path('login') }}">login</a>
 {% endif %}
 
-                <ul id="menu">
+               <ul id="menu">
                     {% block content_header_more %}
                         <li><a class="symfony-button-green" href="{{ path('_welcome') }}">Home</a></li>
                         <li><a class="symfony-button-green" href="{{ path('_skills') }}">Skills</a></li>
@@ -46,6 +41,8 @@
                         <li><a class="symfony-button-green" href="{{ path('user') }}">User</a></li>
                     {% endblock %}
                 </ul>
+</div>
+ 
 
                 <div style="clear: both"></div>
             {% endblock %}
