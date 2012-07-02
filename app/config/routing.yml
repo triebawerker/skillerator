@@ -170,6 +170,36 @@ company_update:
     pattern:      /company/update/{id}
     defaults:     { _controller: TriebawerkeSkilleratorBundle:Company:update}     
 
+
+goal:
+    pattern:      /goal
+    defaults:     { _controller: TriebawerkeSkilleratorBundle:Goal:index}        
+    
+goal_show:
+    pattern:      /goal/show/{id}
+    defaults:     { _controller: TriebawerkeSkilleratorBundle:Goal:show}
+    
+goal_edit:
+    pattern:      /goal/edit/{id}
+    defaults:     { _controller: TriebawerkeSkilleratorBundle:Goal:edit}
+    
+goal_create:
+    pattern:      /goal/create
+    defaults:     { _controller: TriebawerkeSkilleratorBundle:Goal:create}
+
+goal_new:
+    pattern:      /goal/new/{userSkillId}
+    defaults:     { _controller: TriebawerkeSkilleratorBundle:Goal:new} 
+
+goal_delete:
+    pattern:      /goal/delete
+    defaults:     { _controller: TriebawerkeSkilleratorBundle:Goal:delete}      
+
+goal_update:
+    pattern:      /goal/update/{id}
+    defaults:     { _controller: TriebawerkeSkilleratorBundle:Goal:update} 
+
+
 login:
     pattern:   /login
     defaults:  { _controller: TriebawerkeSecurityBundle:Security:login }

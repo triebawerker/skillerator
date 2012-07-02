@@ -101,16 +101,26 @@ ul li
     list-style-type: none;
 }
 
+table
+{
+    background-color: red; 
+ 
+}
+
 td
 {
     padding: 5px;
+    border:1px solid white;
+    background-color: #90c090;
 }
 
 th
 {
     padding: 5px;
-    color: gray;
+    color: #333;
     font-weight: bold;
+    border:1px solid white;
+    background-color: #adcca6;
 }
 
 #symfony-header

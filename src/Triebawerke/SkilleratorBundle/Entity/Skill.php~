@@ -1,21 +1,20 @@
 <?php
 /**
- * Description of Level
+ * Description of Skill
  *
  * @author micha
  */
 namespace Triebawerke\SkilleratorBundle\Entity;
-use Doctrine\Common\Collections\ArrayCollection;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="level") 
- * @ORM\ManyToOne(targetEntity="UserSkills")
+ * @ORM\Table(name="skill")
  */
-class Level {
+class Skill {
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -32,17 +31,19 @@ class Level {
      * @ORM\Column(type="text") 
      */
     protected $description;
-
-    /**
-    * @ORM\OneToMany(targetEntity="UserSkills", mappedBy="levels")
-    */       
-    protected $userSkill;
+    
+    protected $users;
     
    /**
-    * @ORM\OneToMany(targetEntity="Goal", mappedBy="levels")
+    * @ORM\OneToMany(targetEntity="UserSkills", mappedBy="skills")
     */       
-    protected $goal;
+    protected $usersSkills;
     
+//    public function __construct()
+//    {
+//        $this->usersSkills = new \Doctrine\Common\Collections\ArrayCollection();
+//    }
+  
     /**
      * Get id
      *
@@ -96,5 +97,25 @@ class Level {
     public function __toString()
     {
       return $this->name;
+    }
+    
+    /**
+     * Add usersSkills
+     *
+     * @param Triebawerke\SkilleratorBundle\Entity\UserSkills $usersSkills
+     */
+    public function addUserSkills(\Triebawerke\SkilleratorBundle\Entity\UserSkills $usersSkills)
+    {
+        $this->usersSkills[] = $usersSkills;
+    }
+
+    /**
+     * Get usersSkills
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getUsersSkills()
+    {
+        return $this->usersSkills;
     }
 }

@@ -9,10 +9,8 @@
 </ul>
 <table class="records_list">
     <thead>
-        <tr>
-            <th>SkillId</th>            
+        <tr>           
             <th>Name</th>
-            <th>Description</th>
             <th>Level</th>
             <th>Certificate</th>
             <th>Actions</th>
@@ -21,10 +19,8 @@
     </thead>
     <tbody>
     {% for entity in entities %}
-        <tr>
-            <td>{{ entity.skills.id }}</td>
+        <tr>  
             <td>{{ entity.skills.name}}</td>
-            <td>{{ entity.skills.description}}</td>
             <td>{{ entity.levels.name}}</td>
             <td>{{ entity.certificates.name}}</td>
             <td><a href="{{ path('userskills_show', { 'id': entity.id }) }}">show</a></td>

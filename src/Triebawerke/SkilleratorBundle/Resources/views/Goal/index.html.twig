@@ -1,0 +1,47 @@
+{% extends 'TriebawerkeSkilleratorBundle::layout.html.twig' %}
+
+{% block title %}Skillerator{% endblock %}
+
+{% block content %}
+<h1>Goal list</h1>
+
+<table class="records_list">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Level_id</th>
+            <th>Certificate_id</th>
+            <th>Comment</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td><a href="{{ path('goal_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+            <td>{{ entity.levels.name }}</td>
+            <td>{{ entity.certificates.name }}</td>
+
+            <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('goal_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('goal_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<ul>
+    <li>
+        <a href="{{ path('goal_new') }}">
+            Create a new entry
+        </a>
+    </li>
+</ul>
+{% endblock %}

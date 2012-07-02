@@ -4,13 +4,17 @@
 
 {% block content %}
 <h1>UserSkills</h1>
-<p> Skills for user: {{ entity.users.username }}</p>
+
 <table class="record_properties">
+
     <tbody>
-        <tr><th>Id</th><td>{{ entity.skills.id }}</td>
-        <tr><th>Skill</th><td>{{ entity.skills.name }}</td>
-        <tr><th>Description</th><td>{{ entity.skills.description }}</td>
-        </tr>
+        <tr><th>Skill</th><td>{{ entity.skills.name }}</td><td></td>        
+        <tr><th>Description</th><td>{{ entity.skills.description }}</td><td></td>
+
+        <tr><th></th><th>Current</th><th>Goal</th>
+        
+        <tr><th>Certificate</th><td>{{ entity.certificates.name }}</td><td>{% if entity.goal.certificates.name is defined %} {{entity.goal.certificates.name}} {% endif %}</td></tr>
+        <tr><th>Level</th><td>{{ entity.levels.name }}</td><td>{% if entity.goal.levels.name is defined %} {{ entity.goal.levels.name }} {% endif %}</td></tr>
     </tbody>
 </table>
 
@@ -32,4 +36,9 @@
         </form>
     </li>
 </ul>
+{%if entity.goal_id is empty%}
+You don't have goals yet. 
+<a href="{{ path('goal_new', { 'userSkillId': entity.id }) }}">Define one</a>
+{% endif %}
+
 {% endblock %}

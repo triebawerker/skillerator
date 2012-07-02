@@ -44,7 +44,7 @@ class Goal
     private $comment;
     
    /**
-    * @ORM\OneToOne(targetEntity="UserSkills", mappedBy="goal")
+    * @ORM\OneToMany(targetEntity="UserSkills", mappedBy="goals")
     */       
     protected $userSkill;
     
@@ -53,13 +53,14 @@ class Goal
      * @ORM\JoinColumn(name="level_id", referencedColumnName="id") 
      */    
     private $levels;
-
+    
     /**
      * @ORM\ManyToOne(targetEntity="Certificate", inversedBy="goals", cascade={"persist"})
      * @ORM\JoinColumn(name="certificate_id", referencedColumnName="id") 
      */    
     private $certificates;
-    
+
+
     /**
      * Get id
      *
@@ -75,7 +76,7 @@ class Goal
      *
      * @param integer $levelId
      */
-    public function setLevel_Id($levelId)
+    public function setLevelId($levelId)
     {
         $this->level_id = $levelId;
     }
@@ -85,7 +86,7 @@ class Goal
      *
      * @return integer 
      */
-    public function getLevel_Id()
+    public function getLevelId()
     {
         return $this->level_id;
     }
@@ -95,7 +96,7 @@ class Goal
      *
      * @param integer $certificateId
      */
-    public function setCertificate_Id($certificateId)
+    public function setCertificateId($certificateId)
     {
         $this->certificate_id = $certificateId;
     }
@@ -105,7 +106,7 @@ class Goal
      *
      * @return integer 
      */
-    public function getCertificate_Id()
+    public function getCertificateId()
     {
         return $this->certificate_id;
     }
@@ -129,7 +130,7 @@ class Goal
     {
         return $this->comment;
     }
-    
+
     /**
      * Set level
      *
@@ -138,8 +139,8 @@ class Goal
     public function setLevels(\Triebawerke\SkilleratorBundle\Entity\Level $level)
     {
         $this->levels = $level;
-    }
-
+    }    
+    
     /**
      * Get level
      *
@@ -148,16 +149,6 @@ class Goal
     public function getLevels()
     {
         return $this->levels;
-    }
-    
-    /**
-     * Get certificates
-     *
-     * @return Triebawerke\SkilleratorBundle\Entity\Certificate
-     */
-    public function getCertificates()
-    {
-        return $this->certificates;
     }
 
     /**
@@ -168,5 +159,15 @@ class Goal
     public function setCertificates(\Triebawerke\SkilleratorBundle\Entity\Certificate $certificates)
     {
         $this->certificates = $certificates;
+    }    
+    
+    /**
+     * Get certificates
+     *
+     * @return Triebawerke\SkilleratorBundle\Entity\Certificate
+     */
+    public function getCertificates()
+    {
+        return $this->certificates;
     }
 }

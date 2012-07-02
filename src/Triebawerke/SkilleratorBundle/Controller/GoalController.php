@@ -6,102 +6,98 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Triebawerke\SkilleratorBundle\Entity\UserSkills;
-use Triebawerke\SkilleratorBundle\Form\MyskillsType;
+use Triebawerke\SkilleratorBundle\Entity\Goal;
+use Triebawerke\SkilleratorBundle\Form\GoalType;
 
 /**
- * UserSkills controller.
+ * Goal controller.
  *
- * @Route("/userskills")
+ * @Route("/goal")
  */
-class UserSkillsController extends Controller
+class GoalController extends Controller
 {
     /**
-     * Lists all User entities.
+     * Lists all Goal entities.
      *
-     * @Route("/userskills", name="userskills")
+     * @Route("/", name="goal")
      * @Template()
      */
     public function indexAction()
     {
         $user = $this->get('security.context')->getToken()->getUser();
-        $userSkills = $this->getDoctrine()
-                ->getRepository('TriebawerkeSkilleratorBundle:UserSkills')
-                ->loadSkillsByUserId($user->getId());
+        $entities = $this->getDoctrine()
+                ->getRepository('TriebawerkeSkilleratorBundle:Goal')
+                ->loadGoalsByUserId($user->getId());
         
-//        var_dump($userSkills);
-//        die();
-        return array('entities' => $userSkills);
+        return array('entities' => $entities); 
     }
 
     /**
-     * Finds and displays a User entity.
+     * Finds and displays a Goal entity.
      *
-     * @Route("/{id}/show", name="userskills_show")
+     * @Route("/{id}/show", name="goal_show")
      * @Template()
      */
     public function showAction($id)
     {
         $em = $this->getDoctrine()->getEntityManager();
+        $entity = $em->getRepository('TriebawerkeSkilleratorBundle:Goal')->find($id);
 
-        $entity = $em->getRepository('TriebawerkeSkilleratorBundle:UserSkills')->find($id);
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find User entity.');
+            throw $this->createNotFoundException('Unable to find Goal entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
             'entity'      => $entity,
-            'skill'       => $entity->getSkills(),
             'delete_form' => $deleteForm->createView(),        );
     }
-    
 
     /**
-     * Displays a form to create a new User entity.
+     * Displays a form to create a new Goal entity.
      *
-     * @Route("/new", name="userskills_new")
+     * @Route("/{userSkillId}/new", name="goal_new")
      * @Template()
      */
-    public function newAction()
+    public function newAction($userSkillId)
     {
-        $entity = new UserSkills();
-        
-        $form   = $this->createForm(new MyskillsType(), $entity);
-
-        return array(
-            'entity' => $entity,
-            'form'   => $form->createView()
-        );
+      $goal = new Goal();
+      $goal->setLevel_Id(8);
+      $goal->setCertificate_Id(4);
+      $goal->setComment("Write your comment");
+      
+      // get userSkill
+      $em = $this->getDoctrine()->getEntityManager();
+      $userSkill = $em->getRepository('TriebawerkeSkilleratorBundle:UserSkills')->find($userSkillId);
+      $userSkill->setGoal($goal);
+      $em->persist($userSkill);
+      $em->persist($goal);
+      $em->flush();     
+      
+      return $this->redirect($this->generateUrl('goal_edit', array('id' => $goal->getId())));
     }
 
     /**
-     * Creates a new User entity.
+     * Creates a new Goal entity.
      *
-     * @Route("/create", name="user_create")
+     * @Route("/create", name="goal_create")
      * @Method("post")
-     * @Template("TriebawerkeUserBundle:User:new.html.twig")
+     * @Template("TriebawerkeSkilleratorBundle:Goal:new.html.twig")
      */
     public function createAction()
     {
-        $entity  = new UserSkills();
-        $user = $this->get('security.context')->getToken()->getUser();
-        
-        
-        
+        $entity  = new Goal();
         $request = $this->getRequest();
-        $form    = $this->createForm(new MyskillsType(), $entity);
-
+        $form    = $this->createForm(new GoalType(), $entity);
         $form->bindRequest($request);
-        $entity->setUsers($user);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getEntityManager();
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('userskills_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('goal_show', array('id' => $entity->getId())));
             
         }
 
@@ -112,22 +108,22 @@ class UserSkillsController extends Controller
     }
 
     /**
-     * Displays a form to edit an existing User entity.
+     * Displays a form to edit an existing Goal entity.
      *
-     * @Route("/{id}/edit", name="user_edit")
+     * @Route("/{id}/edit", name="goal_edit")
      * @Template()
      */
     public function editAction($id)
     {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $entity = $em->getRepository('TriebawerkeSkilleratorBundle:UserSkills')->find($id);
+        $entity = $em->getRepository('TriebawerkeSkilleratorBundle:Goal')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find User entity.');
+            throw $this->createNotFoundException('Unable to find Goal entity.');
         }
 
-        $editForm = $this->createForm(new MyskillsType(), $entity);
+        $editForm = $this->createForm(new GoalType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
@@ -138,23 +134,23 @@ class UserSkillsController extends Controller
     }
 
     /**
-     * Edits an existing User entity.
+     * Edits an existing Goal entity.
      *
-     * @Route("/{id}/update", name="user_update")
+     * @Route("/{id}/update", name="goal_update")
      * @Method("post")
-     * @Template("TriebawerkeUserBundle:User:edit.html.twig")
+     * @Template("TriebawerkeSkilleratorBundle:Goal:edit.html.twig")
      */
     public function updateAction($id)
     {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $entity = $em->getRepository('TriebawerkeSkilleratorBundle:UserSkills')->find($id);
+        $entity = $em->getRepository('TriebawerkeSkilleratorBundle:Goal')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find User entity.');
+            throw $this->createNotFoundException('Unable to find Goal entity.');
         }
 
-        $editForm   = $this->createForm(new MyskillsType(), $entity);
+        $editForm   = $this->createForm(new GoalType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
         $request = $this->getRequest();
@@ -165,7 +161,7 @@ class UserSkillsController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('userskills_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('goal_edit', array('id' => $id)));
         }
 
         return array(
@@ -176,9 +172,9 @@ class UserSkillsController extends Controller
     }
 
     /**
-     * Deletes a User entity.
+     * Deletes a Goal entity.
      *
-     * @Route("/{id}/delete", name="user_delete")
+     * @Route("/{id}/delete", name="goal_delete")
      * @Method("post")
      */
     public function deleteAction($id)
@@ -190,17 +186,17 @@ class UserSkillsController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getEntityManager();
-            $entity = $em->getRepository('TriebawerkeSkilleratorBundle:UserSkills')->find($id);
+            $entity = $em->getRepository('TriebawerkeSkilleratorBundle:Goal')->find($id);
 
             if (!$entity) {
-                throw $this->createNotFoundException('Unable to find User entity.');
+                throw $this->createNotFoundException('Unable to find Goal entity.');
             }
 
             $em->remove($entity);
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('user'));
+        return $this->redirect($this->generateUrl('goal'));
     }
 
     private function createDeleteForm($id)
@@ -211,6 +207,3 @@ class UserSkillsController extends Controller
         ;
     }
 }
-
-
-?>
