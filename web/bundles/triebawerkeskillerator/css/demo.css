@@ -310,3 +310,25 @@ ul#menu
     margin-right: 1px;
     display: inline;
 }
+
+td.level1 /*yellow*/
+{
+  background-color: #ffe680;
+}
+
+td.level2 /*orange*/
+{
+  background-color: #ff9040;
+}
+
+td.level3 /*green*/
+{
+  background-color: #005522;
+  color: white;
+}
+
+td.level4 /*brown*/
+{
+  background-color: #502d16;
+  color: white;
+}

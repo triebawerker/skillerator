@@ -13,8 +13,16 @@
 
         <tr><th></th><th>Current</th><th>Goal</th>
         
-        <tr><th>Certificate</th><td>{{ entity.certificates.name }}</td><td>{% if entity.goal.certificates.name is defined %} {{entity.goal.certificates.name}} {% endif %}</td></tr>
-        <tr><th>Level</th><td>{{ entity.levels.name }}</td><td>{% if entity.goal.levels.name is defined %} {{ entity.goal.levels.name }} {% endif %}</td></tr>
+        <tr>
+            <th>Certificate</th>
+            <td>{{ entity.certificates.name }}</td>
+            <td>{% if entity.goal.certificates.name is defined %} {{entity.goal.certificates.name}} {% endif %}</td>
+        </tr>
+        <tr>
+            <th>Level</th>
+            <td class="level{{entity.levels.id}}">{{ entity.levels.name }}</td>
+            <td class="level{{entity.goal.levels.id}}">{% if entity.goal.levels.name is defined %} {{ entity.goal.levels.name }} {% endif %}</td>
+        </tr>
     </tbody>
 </table>
 
@@ -39,6 +47,10 @@
 {%if entity.goal_id is empty%}
 You don't have goals yet. 
 <a href="{{ path('goal_new', { 'userSkillId': entity.id }) }}">Define one</a>
+{% endif %}
+
+{%if entity.goal_id is not empty%} 
+<a href="{{ path('goal_edit', { 'id': entity.goal_id }) }}">Edit your goal</a>
 {% endif %}
 
 {% endblock %}
