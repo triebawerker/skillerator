@@ -1,6 +1,6 @@
 <?php
 
-namespace Triebawerke\SkilleratorBundle\Form;
+namespace Triebawerke\UserBundle\Form; 
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilder;

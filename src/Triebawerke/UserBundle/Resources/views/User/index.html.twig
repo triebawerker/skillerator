@@ -8,7 +8,6 @@
 <table class="records_list">
     <thead>
         <tr>
-            <th>Id</th>
             <th>Name</th>
             <th>Lastname</th>
             <th>Company</th>
@@ -17,23 +16,22 @@
         </tr>
     </thead>
     <tbody>
-    {% for entity in entities %}
+
         <tr>
-            <td><a href="{{ path('user_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
             <td>{{ entity.username }}</td>
             <td>{{ entity.email }}</td>
             <td>{{ entity.company.name }}</td>
-            <td><a href="{{ path('user_show', { 'id': entity.id }) }}">show</a></td>
-            <td><a href="{{ path('user_edit', { 'id': entity.id }) }}">edit</a></td>
+            <td><a href="{{ path('user_show') }}">show</a></td>
+            <td><a href="{{ path('user_edit') }}">edit</a></td>
         </tr>
-    {% endfor %}
+
     </tbody>
 </table>
 
 <ul>
     <li>
-        <a href="{{ path('user_new') }}">
-            Create a new entry
+        <a href="{{ path('user_edit') }}">
+            Edit your data
         </a>
     </li>
 </ul>

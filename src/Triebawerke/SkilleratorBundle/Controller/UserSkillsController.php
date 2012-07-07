@@ -86,9 +86,7 @@ class UserSkillsController extends Controller
     public function createAction()
     {
         $entity  = new UserSkills();
-        $user = $this->get('security.context')->getToken()->getUser();
-        
-        
+        $user = $this->get('security.context')->getToken()->getUser(); 
         
         $request = $this->getRequest();
         $form    = $this->createForm(new MyskillsType(), $entity);

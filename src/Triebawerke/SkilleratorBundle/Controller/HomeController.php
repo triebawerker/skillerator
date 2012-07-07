@@ -37,4 +37,13 @@ class HomeController extends Controller
     {
         return array();
     }
+    
+     /**
+     * @Route("/define", name="_home_define")
+     * @Template()
+     */
+    public function defineAction()
+    {
+        return array();
+    }
 }

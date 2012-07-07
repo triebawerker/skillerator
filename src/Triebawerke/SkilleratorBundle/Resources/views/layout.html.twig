@@ -9,27 +9,38 @@
     <body>
         <div id="symfony-wrapper">
             <div id="symfony-header">
+              <div id="logo">
                 <a href="{{ path('_welcome') }}">
                     <img src="{{ asset('bundles/triebawerkeskillerator/images/juggler.png') }}" alt="Symfony">
                 </a>
-          
+              </div>
 
             {% if app.session.flash('notice') %}
                 <div class="flash-message">
                     <em>Notice</em>: {{ app.session.flash('notice') }}
                 </div>
             {% endif %}
+
+            {% block register %}
+              <div id="register">
+                {% if is_granted("ROLE_USER") %}
+                    Hi {{ app.user.username }}
+                    <a href="{{ path('logout') }}">logout</a>
+                {% elseif is_granted("IS_AUTHENTICATED_ANONYMOUSLY") %}
+                  <form action="{{ path('login_check') }}" method="post">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="_username" />
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="_password" />
+                    <button type="submit">login</button>
+                  </form>
+
+                  <a href="#">register</a>
+                {% endif %}
+              </div>
+            {% endblock %}
+
             {% block content_header %}
-{% if is_granted("ROLE_USER") %}
-    Hi {{ app.user.username }}
-{% endif %}
-
-{% if is_granted("ROLE_USER") %}
-    <a href="{{ path('logout') }}">logout</a>
-{% elseif is_granted("IS_AUTHENTICATED_ANONYMOUSLY") %}
-    <a href="{{ path('login') }}">login</a>
-{% endif %}
-
                <ul id="menu">
                     {% block content_header_more %}
                         <li><a class="symfony-button-green" href="{{ path('_welcome') }}">Home</a></li>

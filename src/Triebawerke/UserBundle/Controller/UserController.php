@@ -25,31 +25,31 @@ class UserController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getEntityManager();
-
-        $entities = $em->getRepository('TriebawerkeUserBundle:User')->findAll();
-        
-        return array(
-              'entities' => $entities,
-                    );
+        $user = $this->get('security.context')->getToken()->getUser();
+        $entity = $em->getRepository('TriebawerkeUserBundle:User')->find($user->getId());
+        return array('entity' => $entity);
     }
 
     /**
      * Finds and displays a User entity.
      *
-     * @Route("/{id}/show", name="user_show")
+     * @Route("/show", name="user_show")
      * @Template()
      */
-    public function showAction($id)
+    public function showAction()
     {
         $em = $this->getDoctrine()->getEntityManager();
-
-        $entity = $em->getRepository('TriebawerkeUserBundle:User')->find($id);
+        
+        $user = $this->get('security.context')->getToken()->getUser();
+        $userId = $user->getId();
+        $entity = $em->getRepository('TriebawerkeUserBundle:User')->find($userId);
+        
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find User entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
+        $deleteForm = $this->createDeleteForm($userId);
 
         return array(
             'entity'      => $entity,
@@ -114,14 +114,16 @@ class UserController extends Controller
     /**
      * Displays a form to edit an existing User entity.
      *
-     * @Route("/{id}/edit", name="user_edit")
+     * @Route("/edit", name="user_edit")
      * @Template()
      */
-    public function editAction($id)
+    public function editAction()
     {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $entity = $em->getRepository('TriebawerkeUserBundle:User')->find($id);
+        $user = $this->get('security.context')->getToken()->getUser();
+        $userId = $user->getId();
+        $entity = $em->getRepository('TriebawerkeUserBundle:User')->find($userId);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find User entity.');
@@ -129,7 +131,7 @@ class UserController extends Controller
 
         $editForm = $this->createForm(new UserType(), $entity);
        
-        $deleteForm = $this->createDeleteForm($id);
+        $deleteForm = $this->createDeleteForm($userId);
 
         return array(
             'entity'      => $entity,
@@ -141,32 +143,40 @@ class UserController extends Controller
     /**
      * Edits an existing User entity.
      *
-     * @Route("/{id}/update", name="user_update")
+     * @Route("/update", name="user_update")
      * @Method("post")
      * @Template("TriebawerkeUserBundle:User:edit.html.twig")
      */
-    public function updateAction($id)
+    public function updateAction()
     {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $entity = $em->getRepository('TriebawerkeUserBundle:User')->find($id);
+        $user = $this->get('security.context')->getToken()->getUser();
+        $userId = $user->getId();
+        $entity = $em->getRepository('TriebawerkeUserBundle:User')->find($userId);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find User entity.');
         }
 
         $editForm = $this->createForm(new UserType(), $entity);
-        $deleteForm = $this->createDeleteForm($id);
+        $deleteForm = $this->createDeleteForm($userId);
 
         $request = $this->getRequest();  
 
         $editForm->bindRequest($request);
 
         if ($editForm->isValid()) {
+            // set password
+            $factory = $this->get('security.encoder_factory');
+            $encoder = $factory->getEncoder($entity);
+            $password = $encoder->encodePassword($entity->getPassword(), $entity->getSalt());
+            $entity->setPassword($password);
+            
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('user_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('user_edit', array('id' => $userId)));
         }
 
         return array(
@@ -179,10 +189,10 @@ class UserController extends Controller
     /**
      * Deletes a User entity.
      *
-     * @Route("/{id}/delete", name="user_delete")
+     * @Route("/delete", name="user_delete")
      * @Method("post")
      */
-    public function deleteAction($id)
+    public function deleteAction()
     {
         $form = $this->createDeleteForm($id);
         $request = $this->getRequest();
@@ -191,7 +201,8 @@ class UserController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getEntityManager();
-            $entity = $em->getRepository('TriebawerkeUserBundle:User')->find($id);
+            $user = $this->get('security.context')->getToken()->getUser();
+            $entity = $em->getRepository('TriebawerkeUserBundle:User')->find($user->getId());
 
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find User entity.');
