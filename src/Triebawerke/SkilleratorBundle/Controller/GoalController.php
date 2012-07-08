@@ -24,11 +24,12 @@ class GoalController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getEntityManager();
-
-        $entities = $em->getRepository('TriebawerkeSkilleratorBundle:Goal')->findAll();
-
-        return array('entities' => $entities);
+//        $em = $this->getDoctrine()->getEntityManager();
+//
+//        $entities = $em->getRepository('TriebawerkeSkilleratorBundle:Goal')->findAll();
+//
+//        return array('entities' => $entities);
+      return $this->redirect($this->generateUrl('userskills'));
     }
 
     /**

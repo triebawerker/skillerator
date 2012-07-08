@@ -58,6 +58,12 @@ class User implements AdvancedUserInterface, \Serializable
     protected $isActive;
     
     /**
+     * @Assert\NotBlank()
+     * @Assert\True()
+     */
+    protected $termsAccepted;
+    
+    /**
      * @var int $company_id
      *
      * @ORM\Column(name="company_id", type="integer")
@@ -317,5 +323,15 @@ class User implements AdvancedUserInterface, \Serializable
     public function getGroups()
     {
         return $this->groups;
+    }
+    
+    public function getTermsAccepted()
+    {
+        return $this->termsAccepted;
+    }
+
+    public function setTermsAccepted($termsAccepted)
+    {
+        $this->termsAccepted = (boolean)$termsAccepted;
     }
 }

@@ -86,9 +86,7 @@ class UserSkillsController extends Controller
      */
     public function createAction()
     {
-        $entity  = new UserSkills();
-        
-
+        $entity  = new UserSkills();   
         
         $request = $this->getRequest();
         $form    = $this->createForm(new MyskillsType(), $entity);

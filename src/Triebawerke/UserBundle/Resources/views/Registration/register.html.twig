@@ -1,0 +1,15 @@
+{% extends 'TriebawerkeSkilleratorBundle::layout.html.twig' %}
+
+{% block title %}Skillerator{% endblock %}
+
+{% block content %}
+
+<h1>Registration</h1>
+<p>Register your account</p>
+
+<form action="{{ path('registration_create')}}" method="post" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+
+    <input type="submit" />
+</form>
+{% endblock %}

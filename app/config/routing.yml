@@ -210,6 +210,14 @@ login_check:
 logout:
     pattern:   /logout     
     
+registration_register:
+    pattern:   /registration/register
+    defaults:  { _controller: TriebawerkeUserBundle:Registration:register }
+
+registration_create:
+    pattern:   /registration/create
+    defaults:  { _controller: TriebawerkeUserBundle:Registration:create }   
+   
 _home:
     resource:     "@TriebawerkeSkilleratorBundle/Controller/HomeController.php"
     type:         annotation
