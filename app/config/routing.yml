@@ -188,7 +188,7 @@ goal_create:
     defaults:     { _controller: TriebawerkeSkilleratorBundle:Goal:create}
 
 goal_new:
-    pattern:      /goal/new/{userSkillId}
+    pattern:      /goal/new
     defaults:     { _controller: TriebawerkeSkilleratorBundle:Goal:new} 
 
 goal_delete:

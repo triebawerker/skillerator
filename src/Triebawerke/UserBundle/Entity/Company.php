@@ -1,16 +1,16 @@
 <?php
 
-namespace Triebawerke\SkilleratorBundle\Entity;
+namespace Triebawerke\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Triebawerke\SkilleratorBundle\Entity\Company
+ * Triebawerke\UserBundle\Entity\Company
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Triebawerke\SkilleratorBundle\Entity\CompanyRepository")
+ * @ORM\Entity(repositoryClass="Triebawerke\UserBundle\Entity\CompanyRepository")
  * @ORM\OneToMany(targetEntity="Triebawerke\UserBundle\User", mappedBy="company")
  */
 class Company

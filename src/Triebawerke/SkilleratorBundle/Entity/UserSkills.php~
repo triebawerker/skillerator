@@ -78,12 +78,12 @@ class UserSkills
     private $certificates;
     
     /**
-     * @ORM\ManyToOne(targetEntity="Goal", inversedBy="userSkill", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="Goal", inversedBy="userSkill", cascade={"persist"})
      * @ORM\JoinColumn(name="goal_id", referencedColumnName="id") 
      */    
-    private $goals;
+    private $goal;
 
-    /**
+        /**
      * Get id
      *
      * @return integer 
@@ -92,17 +92,6 @@ class UserSkills
     {
         return $this->id;
     }
-    
-    /**
-     * Get skill_id
-     *
-     * @return integer 
-     */
-    public function getSkillId()
-    {
-        return $this->skill_id;
-    }
-
 
     /**
      * Set user_id
@@ -112,16 +101,6 @@ class UserSkills
     public function setUserId($userId)
     {
         $this->user_id = $userId;
-    }
-    
-    /**
-     * Set level_id
-     *
-     * @param integer $levelId
-     */
-    public function setLevelId($levelId)
-    {
-        $this->level_id = $levelId;
     }
 
     /**
@@ -133,6 +112,16 @@ class UserSkills
     {
         return $this->user_id;
     }
+
+    /**
+     * Set goal_id
+     *
+     * @param integer $goalId
+     */
+    public function setGoalId($goalId)
+    {
+        $this->user_id = $goalId;
+    }    
     
     /**
      * Get goal_id
@@ -205,6 +194,16 @@ class UserSkills
     }
     
     /**
+     * Get certificates
+     *
+     * @return Triebawerke\SkilleratorBundle\Entity\Certificate
+     */
+    public function getCertificates()
+    {
+        return $this->certificates;
+    }
+
+    /**
      * Set certificates
      *
      * @param Triebawerke\SkilleratorBundle\Entity\Certificate $certificate
@@ -215,23 +214,13 @@ class UserSkills
     }
     
     /**
-     * Get certificates
-     *
-     * @return Triebawerke\SkilleratorBundle\Entity\Certificate
-     */
-    public function getCertificates()
-    {
-        return $this->certificates;
-    }
-    
-    /**
      * Get goals
      *
      * @return Triebawerke\SkilleratorBundle\Entity\Goal
      */
-    public function getGoals()
+    public function getGoal()
     {
-        return $this->goals;
+        return $this->goal;
     }
 
     /**
@@ -239,9 +228,9 @@ class UserSkills
      *
      * @param Triebawerke\SkilleratorBundle\Entity\Goal $goals
      */
-    public function setGoals(\Triebawerke\SkilleratorBundle\Entity\Goal $goals)
+    public function setGoal(\Triebawerke\SkilleratorBundle\Entity\Goal $goal)
     {
-        $this->goals = $goals;
+        $this->goal = $goal;
     }
 
 }

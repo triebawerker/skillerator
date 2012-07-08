@@ -1,6 +1,6 @@
 <?php
 
-namespace Triebawerke\SkilleratorBundle\Entity;
+namespace Triebawerke\UserBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 

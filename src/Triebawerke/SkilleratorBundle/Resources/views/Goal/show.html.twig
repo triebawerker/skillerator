@@ -3,7 +3,6 @@
 {% block title %}Skillerator{% endblock %}
 
 {% block content %}
-
 <h1>Goal</h1>
 
 <table class="record_properties">
@@ -13,18 +12,17 @@
             <td>{{ entity.id }}</td>
         </tr>
         <tr>
-            <th>Level goal</th>
-            <td>{{ entity.levels.name }}</td>
+            <th>Level_id</th>
+            <td>{{ entity.levelid }}</td>
         </tr>
         <tr>
-            <th>Certificate goal</th>
-            <td>{{ entity.certificates.name }}</td>
+            <th>Certificate_id</th>
+            <td>{{ entity.certificateid }}</td>
         </tr>
         <tr>
             <th>Comment</th>
             <td>{{ entity.comment }}</td>
         </tr>
-
     </tbody>
 </table>
 

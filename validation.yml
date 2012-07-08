@@ -1,0 +1,6 @@
+## YAML Template.
+---
+Triebawerke\UserBundle\Entity\User:
+  properties:
+    username:
+      - NotBlank: ~

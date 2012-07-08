@@ -78,7 +78,7 @@ class UserSkills
     private $certificates;
     
     /**
-     * @ORM\OneToOne(targetEntity="Goal", inversedBy="userSkill", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="Goal", cascade={"persist"})
      * @ORM\JoinColumn(name="goal_id", referencedColumnName="id") 
      */    
     private $goal;
@@ -108,7 +108,7 @@ class UserSkills
      *
      * @return integer 
      */
-    public function getUser_Id()
+    public function getUserId()
     {
         return $this->user_id;
     }
@@ -118,17 +118,17 @@ class UserSkills
      *
      * @param integer $goalId
      */
-    public function setGoal_Id($goalId)
+    public function setGoalId($goalId)
     {
-        $this->user_id = $goalId;
+        $this->goal_id = $goalId;
     }    
     
     /**
-     * Get user_id
+     * Get goal_id
      *
      * @return integer 
      */
-    public function getGoal_Id()
+    public function getGoalId()
     {
         return $this->goal_id;
     }
@@ -224,13 +224,53 @@ class UserSkills
     }
 
     /**
-     * Set goals
+     * Set goal
      *
-     * @param Triebawerke\SkilleratorBundle\Entity\Goal $goals
+     * @param Triebawerke\SkilleratorBundle\Entity\Goal $goal
      */
-    public function setGoal(\Triebawerke\SkilleratorBundle\Entity\Goal $goal)
+    public function setGoals(\Triebawerke\SkilleratorBundle\Entity\Goal $goal)
     {
         $this->goal = $goal;
     }
 
+
+    /**
+     * Set skill_id
+     *
+     * @param integer $skillId
+     */
+    public function setSkillId($skillId)
+    {
+        $this->skill_id = $skillId;
+    }
+
+    /**
+     * Get skill_id
+     *
+     * @return integer 
+     */
+    public function getSkillId()
+    {
+        return $this->skill_id;
+    }
+
+    /**
+     * Set level_id
+     *
+     * @param integer $levelId
+     */
+    public function setLevelId($levelId)
+    {
+        $this->level_id = $levelId;
+    }
+
+    /**
+     * Get level_id
+     *
+     * @return integer 
+     */
+    public function getLevelId()
+    {
+        return $this->level_id;
+    }
 }

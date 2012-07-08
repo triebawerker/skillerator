@@ -2,12 +2,10 @@
 
 {% block title %}Skillerator{% endblock %}
 
-{% block content_header '' %}
 
 {% block content %}
 <h1>Enter your new skill</h1>
 
-for user: {{ entity.userId }}
     <form action="{{ path('userskills_create') }}" method="post" {{ form_enctype(form) }}> 
       {{ form_widget(form) }}
       <input type="submit" />

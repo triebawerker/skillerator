@@ -118,4 +118,9 @@ class Skill {
     {
         return $this->usersSkills;
     }
+    public function __construct()
+    {
+        $this->usersSkills = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
 }

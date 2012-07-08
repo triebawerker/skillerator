@@ -12,8 +12,9 @@
         <tr>           
             <th>Name</th>
             <th>Level</th>
-            <th>Level goal</th>
-            <th>Certificate</th>            
+            
+            <th>Certificate</th> 
+            <th>Level goal</th>          
             <th>Actions</th>
             <th>&nbsp;</th>
         </tr>
@@ -22,9 +23,9 @@
     {% for entity in entities %}
         <tr>  
             <td>{{ entity.skills.name}}</td>
-            <td class="level{{entity.levels.id}}">{{ entity.levels.name}}</td>
-            <td class="level{{entity.goal.levels.id}}">{% if entity.goal.levels.name is defined %} {{ entity.goal.levels.name }} {% endif %}</td>
+            <td class="level{{entity.levels.id}}">{{ entity.levels.name}}</td>            
             <td>{{ entity.certificates.name}}</td>
+            <td class="level{{entity.goal.levels.id}}">{% if entity.goal.levels.name is defined %} {{ entity.goal.levels.name }} {% endif %}</td>
             <td><a href="{{ path('userskills_show', { 'id': entity.id }) }}">show</a></td>
             <td><a href="{{ path('userskills_edit', { 'id': entity.id }) }}">edit</a></td>       
         </tr>

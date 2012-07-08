@@ -41,7 +41,7 @@ class Level {
    /**
     * @ORM\OneToMany(targetEntity="Goal", mappedBy="levels")
     */       
-    protected $goal;
+    protected $goals;
     
     /**
      * Get id
@@ -96,5 +96,50 @@ class Level {
     public function __toString()
     {
       return $this->name;
+    }
+    public function __construct()
+    {
+    $this->userSkill = new \Doctrine\Common\Collections\ArrayCollection();
+    $this->goals = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add userSkill
+     *
+     * @param Triebawerke\SkilleratorBundle\Entity\UserSkills $userSkill
+     */
+    public function addUserSkills(\Triebawerke\SkilleratorBundle\Entity\UserSkills $userSkill)
+    {
+        $this->userSkill[] = $userSkill;
+    }
+
+    /**
+     * Get userSkill
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getUserSkill()
+    {
+        return $this->userSkill;
+    }
+
+    /**
+     * Add goal
+     *
+     * @param Triebawerke\SkilleratorBundle\Entity\Goal $goals
+     */
+    public function addGoals(\Triebawerke\SkilleratorBundle\Entity\Goal $goals)
+    {
+        $this->goals[] = $goals;
+    }
+
+    /**
+     * Get goal
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getGoals()
+    {
+        return $this->goals;
     }
 }

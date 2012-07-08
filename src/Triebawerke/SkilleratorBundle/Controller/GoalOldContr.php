@@ -24,11 +24,12 @@ class GoalController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getEntityManager();
-
-        $entities = $em->getRepository('TriebawerkeSkilleratorBundle:Goal')->findAll();
-
-        return array('entities' => $entities);
+        $user = $this->get('security.context')->getToken()->getUser();
+        $entities = $this->getDoctrine()
+                ->getRepository('TriebawerkeSkilleratorBundle:Goal')
+                ->loadGoalsByUserId($user->getId());
+        
+        return array('entities' => $entities); 
     }
 
     /**
@@ -40,7 +41,6 @@ class GoalController extends Controller
     public function showAction($id)
     {
         $em = $this->getDoctrine()->getEntityManager();
-
         $entity = $em->getRepository('TriebawerkeSkilleratorBundle:Goal')->find($id);
 
         if (!$entity) {
@@ -57,18 +57,25 @@ class GoalController extends Controller
     /**
      * Displays a form to create a new Goal entity.
      *
-     * @Route("/new", name="goal_new")
+     * @Route("/{userSkillId}/new", name="goal_new")
      * @Template()
      */
-    public function newAction()
+    public function newAction($userSkillId)
     {
-        $entity = new Goal();
-        $form   = $this->createForm(new GoalType(), $entity);
-
-        return array(
-            'entity' => $entity,
-            'form'   => $form->createView()
-        );
+      $goal = new Goal();
+      $goal->setLevelId(8);
+      $goal->setCertificateId(4);
+      $goal->setComment("Default goal for new user skill");
+      
+      // get userSkill
+      $em = $this->getDoctrine()->getEntityManager();
+      $userSkill = $em->getRepository('TriebawerkeSkilleratorBundle:UserSkills')->find($userSkillId);
+      $userSkill->setGoals($goal);
+      $em->persist($userSkill);
+      $em->persist($goal);
+      $em->flush();     
+      
+      return $this->redirect($this->generateUrl('goal_edit', array('id' => $goal->getId())));
     }
 
     /**

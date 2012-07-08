@@ -7,9 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Triebawerke\SkilleratorBundle\Entity\Goal
  *
- * @ORM\Table()
+ * @ORM\Table(name="goal")
  * @ORM\Entity(repositoryClass="Triebawerke\SkilleratorBundle\Entity\GoalRepository")
- * @ORM\ManyToOne(targetEntity="UserSkills")
  */
 class Goal
 {
@@ -43,19 +42,15 @@ class Goal
      */
     private $comment;
     
-   /**
-    * @ORM\OneToOne(targetEntity="UserSkills", mappedBy="goal")
-    */       
-    protected $userSkill;
-    
+   
     /**
-     * @ORM\ManyToOne(targetEntity="Level", inversedBy="goals", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Level", inversedBy="goals")
      * @ORM\JoinColumn(name="level_id", referencedColumnName="id") 
      */    
     private $levels;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Certificate", inversedBy="goals", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Certificate", inversedBy="goals")
      * @ORM\JoinColumn(name="certificate_id", referencedColumnName="id") 
      */    
     private $certificates;
@@ -75,7 +70,7 @@ class Goal
      *
      * @param integer $levelId
      */
-    public function setLevel_Id($levelId)
+    public function setLevelId($levelId)
     {
         $this->level_id = $levelId;
     }
@@ -85,7 +80,7 @@ class Goal
      *
      * @return integer 
      */
-    public function getLevel_Id()
+    public function getLevelId()
     {
         return $this->level_id;
     }
@@ -95,7 +90,7 @@ class Goal
      *
      * @param integer $certificateId
      */
-    public function setCertificate_Id($certificateId)
+    public function setCertificateId($certificateId)
     {
         $this->certificate_id = $certificateId;
     }
@@ -105,7 +100,7 @@ class Goal
      *
      * @return integer 
      */
-    public function getCertificate_Id()
+    public function getCertificateId()
     {
         return $this->certificate_id;
     }
@@ -169,4 +164,6 @@ class Goal
     {
         $this->certificates = $certificates;
     }
+
+    
 }

@@ -6,8 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Triebawerke\SkilleratorBundle\Entity\Company;
-use Triebawerke\SkilleratorBundle\Form\CompanyType;
+use Triebawerke\UserBundle\Entity\Company;
+use Triebawerke\UserBundle\Form\CompanyType;
 
 /**
  * Company controller.

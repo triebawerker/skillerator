@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Triebawerke\SkilleratorBundle\Entity\UserSkills;
 use Triebawerke\SkilleratorBundle\Form\MyskillsType;
+use Triebawerke\SkilleratorBundle\Entity\Goal;
 
 /**
  * UserSkills controller.
@@ -86,16 +87,21 @@ class UserSkillsController extends Controller
     public function createAction()
     {
         $entity  = new UserSkills();
-        $user = $this->get('security.context')->getToken()->getUser(); 
+        
+
         
         $request = $this->getRequest();
         $form    = $this->createForm(new MyskillsType(), $entity);
-
+        
         $form->bindRequest($request);
+        
+        $user = $this->get('security.context')->getToken()->getUser(); 
         $entity->setUsers($user);
+        $goal = $this->setDefaultGoal();
+        $entity->setGoals($goal);  
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getEntityManager();
+            $em = $this->getDoctrine()->getEntityManager();           
             $em->persist($entity);
             $em->flush();
 
@@ -198,7 +204,7 @@ class UserSkillsController extends Controller
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('user'));
+        return $this->redirect($this->generateUrl('userskills'));
     }
 
     private function createDeleteForm($id)
@@ -208,7 +214,21 @@ class UserSkillsController extends Controller
             ->getForm()
         ;
     }
+    
+    private function setDefaultGoal()
+    {
+      // get default level and certificate
+      $em = $this->getDoctrine()->getEntityManager();
+      $level = $em->getRepository('TriebawerkeSkilleratorBundle:Level')->find(8);
+      $certificate = $em->getRepository('TriebawerkeSkilleratorBundle:Certificate')->find(4);
+     
+      // create new goal with default values
+      $goal = new Goal();
+        $goal->setLevels($level);
+        $goal->setCertificates($certificate);
+        $goal->setComment("Default goal");
+        
+        return $goal;
+    }
 }
-
-
 ?>

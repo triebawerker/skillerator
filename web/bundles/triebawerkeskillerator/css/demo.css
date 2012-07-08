@@ -11,7 +11,7 @@ html{color:#000;background:#FFF;}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pr
 
 html, body
 {
-    background-color: #90c090;
+    background-color: #dbe3db;
 }
 
 body
@@ -62,9 +62,7 @@ h2
     font-family:      "Lucida Sans Unicode", "Lucida Grande", Verdana, Arial, Helvetica, sans-serif;
 
     margin-bottom:    10px;
-    background-color: #aacd4e;
     padding:          2px 4px;
-    display:          inline-block;
     text-transform:   uppercase;
 
 }
@@ -103,15 +101,15 @@ ul li
 
 table
 {
-    background-color: red; 
+    background-color: white; 
  
 }
 
 td
 {
     padding: 5px;
-    border:1px solid white;
-    background-color: #90c090;
+    border:1px solid gray;
+    background-color: white;
 }
 
 th
@@ -119,8 +117,8 @@ th
     padding: 5px;
     color: #333;
     font-weight: bold;
-    border:1px solid white;
-    background-color: #adcca6;
+    border:1px solid gray;
+    background-color: white;
 }
 
 #symfony-header
@@ -228,10 +226,10 @@ input[type=text], input[type=password]
     height:15px;  
     padding: 7px 15px;
     color: white;
-    background: #447821;
+    background: #164450;
     filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#a7da39', endColorstr='#6a9211');
 }
-.symfony-button-green:hover{background: #90c090;}
+.symfony-button-green:hover{background: #93aca7;}
 
 .symfony-blocks-welcome
 {
@@ -326,22 +324,22 @@ ul#menu
 
 td.level1 /*yellow*/
 {
-  background-color: #ffe680;
+  background-color: #b7c8be;
 }
 
 td.level2 /*orange*/
 {
-  background-color: #ff9040;
+  background-color: #93aca7;
 }
 
 td.level3 /*green*/
 {
-  background-color: #005522;
+  background-color: #536c53;
   color: white;
 }
 
 td.level4 /*brown*/
 {
-  background-color: #502d16;
+  background-color: #164450;
   color: white;
 }
