@@ -157,6 +157,34 @@ class SkillsController extends Controller
         );
     }
 
+    /**
+     * Deletes a Certificate entity.
+     *
+     * @Route("/{id}/delete", name="_skills_delete")
+     * @Method("post")
+     */
+    public function deleteAction($id)
+    {
+        $form = $this->createDeleteForm($id);
+        $request = $this->getRequest();
+
+        $form->bindRequest($request);
+
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getEntityManager();
+            $entity = $em->getRepository('TriebawerkeSkilleratorBundle:Skill')->find($id);
+
+            if (!$entity) {
+                throw $this->createNotFoundException('Unable to find skill entity.');
+            }
+
+            $em->remove($entity);
+            $em->flush();
+        }
+
+        return $this->redirect($this->generateUrl('_skills'));
+    }
+    
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder(array('id' => $id))
