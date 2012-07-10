@@ -6,6 +6,10 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class GoalControllerTest extends WebTestCase
 {
+    public function test()
+    {
+      $this->assertTrue(true);
+    }
     /*
     public function testCompleteScenario()
     {

@@ -7,53 +7,101 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 class CertificateControllerTest extends WebTestCase
 {
 
-    public function testCompleteScenario()
+  private $client = null;
+
+  /**
+   * Sets up the fixture, for example, opens a network connection.
+   * This method is called before a test is executed.
+   */
+  protected function setUp()
+  {
+      $this->client = static::createClient(array(),
+                              array(
+                                'PHP_AUTH_USER' => 'admin',
+                                'PHP_AUTH_PW' => 'micha',
+                              ));
+  }
+
+  /**
+   * Tears down the fixture, for example, closes a network connection.
+   * This method is called after a test is executed.
+   */
+  protected function tearDown()
+  {
+     unset($this->client);
+  }
+    public function testCertificateNewForm()
     {
-      
-        // Create a new client to browse the application
-        $client = static::createClient();
+        $crawler = $this->client->request('GET', '/certificate/new');
+        $response = $this->client->getResponse()->getStatusCode();
+        $this->assertTrue(200 === $response);
 
-        // Create a new entry in the database
-        $crawler = $client->request('GET', '/home/');
-        $this->assertTrue(200 === $client->getResponse()->getStatusCode());
-        
-        /*
-        $crawler = $client->click($crawler->selectLink('Create a new entry')->link());
-
-        // Fill in the form and submit it
+        // fill in form
         $form = $crawler->selectButton('Create')->form(array(
-            'certificate[field_name]'  => 'Test',
-            // ... other fields to fill
+            'triebawerke_skilleratorbundle_certificatetype[name]'  => 'test',
+            'triebawerke_skilleratorbundle_certificatetype[description]'  => 'description',
         ));
 
-        $client->submit($form);
-        $crawler = $client->followRedirect();
+        // submit form
+        $this->client->submit($form);
+        $crawler = $this->client->followRedirect();
 
         // Check data in the show view
-//        $this->assertTrue($crawler->filter('td:contains("Test")')->count() > 0);
+        $contentName = $crawler->filter('td:contains("test")');
+        $this->assertTrue($contentName->count() > 0);
 
-        // Edit the entity
-        $crawler = $client->click($crawler->selectLink('Edit')->link());
-
-        $form = $crawler->selectButton('Edit')->form(array(
-            'certificate[field_name]'  => 'Foo',
-            // ... other fields to fill
-        ));
-
-        $client->submit($form);
-        $crawler = $client->followRedirect();
-
-        // Check the element contains an attribute with value equals "Foo"
-//        $this->assertTrue($crawler->filter('[value="Foo"]')->count() > 0);
-
-        // Delete the entity
-        $client->submit($crawler->selectButton('Delete')->form());
-        $crawler = $client->followRedirect();
-
-        // Check the entity has been delete on the list
-//        $this->assertNotRegExp('/Foo/', $client->getResponse()->getContent());
-       * 
-       */
+        $contentDescription = $crawler->filter('td:contains("description")');
+        $this->assertTrue($contentDescription->count() > 0);
     }
 
+    /**
+     * test edit function
+     */
+    public function testEditCertificateForm()
+    {
+
+        $crawler = $this->client->request('GET', '/certificate');
+        $response = $this->client->getResponse()->getStatusCode();
+        $this->assertTrue(200 === $response);
+
+        // Edit the entity
+        $newName = 'new content';
+        $newDescription = 'new description';
+        $crawler = $this->client->click($crawler->selectLink('edit')->link());
+
+        $form = $crawler->selectButton('Edit')->form(array(
+            'triebawerke_skilleratorbundle_certificatetype[name]'  => $newName,
+            'triebawerke_skilleratorbundle_certificatetype[description]'  => $newDescription,
+        ));
+
+        $this->client->submit($form);
+        $crawler = $this->client->followRedirect();
+
+        // Check the element contains the changed value
+        $formValues = $form->getValues();
+        $this->assertEquals($formValues['triebawerke_skilleratorbundle_certificatetype[name]'], $newName);
+        $this->assertEquals($formValues['triebawerke_skilleratorbundle_certificatetype[description]'], $newDescription);
+
+    }
+
+    /**
+     * test delete function
+     */
+    public function testDeleteCertificate()
+    {
+
+        $crawler = $this->client->request('GET', '/certificate');
+        $response = $this->client->getResponse()->getStatusCode();
+        $this->assertTrue(200 === $response);
+/*
+        // Delete the entity
+        $crawler = $this->client->click($crawler->selectLink('edit')->link());
+        $this->client->submit($crawler->selectButton('Delete')->form());
+        $this->client->followRedirect();
+
+        // Check the entity has been delete on the list
+        $this->assertNotRegExp('/test/', $this->client->getResponse()->getContent());
+ * 
+ */
+    }
 }

@@ -10,6 +10,7 @@ use Triebawerke\SkilleratorBundle\Entity\UserSkills;
 use Triebawerke\SkilleratorBundle\Form\MyskillsType;
 use Triebawerke\SkilleratorBundle\Entity\Goal;
 
+
 /**
  * UserSkills controller.
  *
@@ -29,7 +30,7 @@ class UserSkillsController extends Controller
         $userSkills = $this->getDoctrine()
                 ->getRepository('TriebawerkeSkilleratorBundle:UserSkills')
                 ->loadSkillsByUserId($user->getId());
-        
+
 //        var_dump($userSkills);
 //        die();
         return array('entities' => $userSkills);
@@ -57,7 +58,7 @@ class UserSkillsController extends Controller
             'skill'       => $entity->getSkills(),
             'delete_form' => $deleteForm->createView(),        );
     }
-    
+
 
     /**
      * Displays a form to create a new User entity.
@@ -68,7 +69,7 @@ class UserSkillsController extends Controller
     public function newAction()
     {
         $entity = new UserSkills();
-        
+
         $form   = $this->createForm(new MyskillsType(), $entity);
 
         return array(
@@ -86,25 +87,25 @@ class UserSkillsController extends Controller
      */
     public function createAction()
     {
-        $entity  = new UserSkills();   
-        
+        $entity  = new UserSkills();
+
         $request = $this->getRequest();
         $form    = $this->createForm(new MyskillsType(), $entity);
-        
+
         $form->bindRequest($request);
-        
-        $user = $this->get('security.context')->getToken()->getUser(); 
+
+        $user = $this->get('security.context')->getToken()->getUser();
         $entity->setUsers($user);
         $goal = $this->setDefaultGoal();
-        $entity->setGoals($goal);  
+        $entity->setGoals($goal);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getEntityManager();           
+            $em = $this->getDoctrine()->getEntityManager();
             $em->persist($entity);
             $em->flush();
 
             return $this->redirect($this->generateUrl('userskills_show', array('id' => $entity->getId())));
-            
+
         }
 
         return array(
@@ -212,20 +213,20 @@ class UserSkillsController extends Controller
             ->getForm()
         ;
     }
-    
+
     private function setDefaultGoal()
     {
       // get default level and certificate
       $em = $this->getDoctrine()->getEntityManager();
       $level = $em->getRepository('TriebawerkeSkilleratorBundle:Level')->find(8);
       $certificate = $em->getRepository('TriebawerkeSkilleratorBundle:Certificate')->find(4);
-     
+
       // create new goal with default values
       $goal = new Goal();
         $goal->setLevels($level);
         $goal->setCertificates($certificate);
         $goal->setComment("Default goal");
-        
+
         return $goal;
     }
 }
