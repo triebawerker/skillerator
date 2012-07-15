@@ -201,4 +201,65 @@ class CompanyController extends Controller
             ->getForm()
         ;
     }
+        
+    /**
+     * Show skills for selected company
+     *
+     * @Route("/companyskills/{id}", name="company_companyskills")
+     * @Method("post")
+     */
+    public function companyskillsAction($id)
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+       
+        $company = $em->getRepository('TriebawerkeUserBundle:Company')->find($id);
+        $users = $company->getUsers();
+            
+        // get userIds
+        $userIds = array();
+        foreach($users as $user)
+        {
+          $userIds[] = $user->getId();
+        }
+        
+        $userSkills = $this->getDoctrine()
+                          ->getRepository('TriebawerkeSkilleratorBundle:UserSkills')
+                          ->loadSkillsByUserIds($userIds); 
+        
+        return $this->render('TriebawerkeUserBundle:Company:userskills.html.twig',
+                              array('entities' => $userSkills,
+                                    'company'  => $company,                                  
+                                   ));
+      
+    }
+        
+    /**
+     * Show skills for selected team
+     *
+     * @Route("/{id}/teamskills", name="company_teamskills")
+     * @Method("post")
+     */
+    public function teamskillsAction($id)
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+        
+        $team = $em->getRepository('TriebawerkeUserBundle:Team')->find($id);
+        $users = $team->getUsers();
+            
+        // get userIds
+        $userIds = array();
+        foreach($users as $user)
+        {
+          $userIds[] = $user->getId();
+        }
+
+        $userSkills = $this->getDoctrine()
+                          ->getRepository('TriebawerkeSkilleratorBundle:UserSkills')
+                          ->loadSkillsByUserIds($userIds); 
+        
+        return $this->render('TriebawerkeUserBundle:Company:userskills.html.twig',
+                              array('entities' => $userSkills,
+                                    'team'  => $team,                                  
+                                   ));
+    }
 }

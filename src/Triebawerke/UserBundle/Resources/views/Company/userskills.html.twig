@@ -1,0 +1,32 @@
+{% extends 'TriebawerkeSkilleratorBundle::layout.html.twig' %}
+
+{% block title %}Skillerator{% endblock %}
+
+{% block content %}
+
+{% if company.name is defined %}
+<h1>UserSkills for {{ company.name}}</h1>
+{% endif %}
+
+{% if team.name is defined %}
+<h1>UserSkills for team {{ team.name}}</h1>
+{% endif %}
+
+<table class="records_list">
+    <thead>
+        <tr>           
+            <th>Name</th>
+            <th>Level</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>  
+            <td>{{ entity.skills.name}}</td>
+            <td class="level{{entity.levels.id}}">{{ entity.levels.name}}</td>                  
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

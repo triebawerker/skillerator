@@ -31,5 +31,29 @@ class UserSkillsRepository extends EntityRepository
       
       return $userSkills;
    }
-
+   
+  public function loadSkillsByUserIds($userIds = null)
+  {
+      
+      if(null === $userIds)
+      {
+        throw new UserSkillsNotFoundException('userIds must not be null', null, 0, null);
+      }
+      $query = $this  
+              ->createQueryBuilder('us')
+              ->where('us.user_id IN (:userIds)')
+              ->setParameter('userIds', $userIds)
+              ->orderBy('us.level_id', 'DESC')
+              ->groupBy('us.skill_id')
+              ->getQuery()
+              ;
+      try
+      {
+          $userSkills = $query->getResult();
+      } catch(NoResutException $e) {
+          throw new UserSkillsNotFoundException(sprintf('Unable to find user skills for user id %d', explode(',', $userIds)), null, 0, $e);
+      }
+      
+      return $userSkills;
+   }
 }

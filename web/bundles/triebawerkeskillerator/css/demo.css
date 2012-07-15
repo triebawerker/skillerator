@@ -51,7 +51,7 @@ h1, h2, h3
 h1
 {
     font-size:      45px;
-    padding-bottom: 30px;
+    padding: 20px 0 10px 0;
 }
 
 h2
@@ -138,7 +138,7 @@ th
 {
     background-color:           white;
     border:                     1px solid #DFDFDF;
-    padding:                    50px;
+    padding:                    20px 50px;
     -moz-border-radius:         3px;
     -webkit-border-radius:      3px;
     border-radius:              3px;

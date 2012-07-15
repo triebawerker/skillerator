@@ -23,18 +23,16 @@
             <td>{{company.street}}</td>
             <td>{{company.city}}</td>
             <td>{{company.web}}</td>
-            <td>
-                <a href="{{ path('company_show', { 'id': company.id }) }}">show</a>
-            </td>
-            <td>
-                <a href="{{ path('company_edit', { 'id': company.id }) }}">edit</a>
-            </td>
+            <td><a href="{{ path('company_show', { 'id': company.id }) }}">show</a></td>
+            <td><a href="{{ path('company_edit', { 'id': company.id }) }}">edit</a></td>
+            <td><a href="{{ path('company_companyskills', { 'id': company.id }) }}">show company skills</a></td>
         </tr>
         {% for team in company.teams %}
         <tr>
             <td class="subrow">team:</td>            
             <td class="subrow">{{team.name}}</td>
             <td class="subrow">{{team.nickname}}</td>
+<td><a href="{{ path('company_teamskills', { 'id': team.id }) }}">show team skills</a></td>
         </tr>
         {% endfor %}
     {% endfor %}

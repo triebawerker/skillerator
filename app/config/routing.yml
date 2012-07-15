@@ -169,6 +169,14 @@ company_delete:
 company_update:
     pattern:      /company/update/{id}
     defaults:     { _controller: TriebawerkeUserBundle:Company:update}     
+    
+company_companyskills:
+    pattern:      /company/companyskills/{id}
+    defaults:     { _controller: TriebawerkeUserBundle:Company:companyskills}    
+
+company_teamskills:
+    pattern:      /company/teamskills/{id}
+    defaults:     { _controller: TriebawerkeUserBundle:Company:teamskills}  
 
 team:
     pattern:      /team

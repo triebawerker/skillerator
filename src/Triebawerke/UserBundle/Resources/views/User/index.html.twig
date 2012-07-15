@@ -3,7 +3,7 @@
 {% block title "Skillerator" %}
 
 {% block content %}
-<h1>My Data</h1>
+<h1>My account</h1>
 
 <table class="records_list">
     <thead>
@@ -20,11 +20,27 @@
         <tr>
             <td>{{ entity.username }}</td>
             <td>{{ entity.email }}</td>
-            <td>{{ entity.company.name }}</td>
             <td><a href="{{ path('user_show') }}">show</a></td>
             <td><a href="{{ path('user_edit') }}">edit</a></td>
         </tr>
 
+    </tbody>
+</table>
+
+
+<h1>Companies I am associated with</h1>
+<table class="records_list">
+    <thead>
+        <tr>
+            <th>Company</th>
+        </tr>
+    </thead>
+    <tbody>
+    {%  for company in entity.company%}
+        <tr>
+            <td>{{ company.name }}</td>
+        </tr>
+    {% endfor %}
     </tbody>
 </table>
 
