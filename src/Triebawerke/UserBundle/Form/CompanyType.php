@@ -14,6 +14,7 @@ class CompanyType extends AbstractType
             ->add('street')
             ->add('city')
             ->add('web')
+            ->add('teams')
             ;
     }
 

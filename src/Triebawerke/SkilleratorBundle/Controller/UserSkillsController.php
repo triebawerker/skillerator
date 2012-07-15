@@ -31,8 +31,6 @@ class UserSkillsController extends Controller
                 ->getRepository('TriebawerkeSkilleratorBundle:UserSkills')
                 ->loadSkillsByUserId($user->getId());
 
-//        var_dump($userSkills);
-//        die();
         return array('entities' => $userSkills);
     }
 

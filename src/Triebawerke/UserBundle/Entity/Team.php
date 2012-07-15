@@ -136,4 +136,13 @@ class Team {
     {
         return $this->company;
     }
+    
+    /**
+     * display object 
+     * @return string $name  
+     */
+    public function __toString()
+    {
+      return $this->name;
+    }
 }

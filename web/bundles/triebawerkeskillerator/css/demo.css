@@ -188,7 +188,9 @@ input[type=text], input[type=password]
 }
 
 .symfony-button-grey,
-.symfony-button-green
+.symfony-button-green,
+.symfony-button-team,
+.symfony-button-skills
 {
   
     font-size: 0.75em;
@@ -222,15 +224,27 @@ input[type=text], input[type=password]
     filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#d7d7d7');
 }
 
-.symfony-button-green
+.symfony-button-green,
+.symfony-button-team,
+.symfony-button-skills
 {
     height:15px;  
-    padding: 7px 15px;
+    padding: 4px 7px;
     color: white;
     background: #164450;
     filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#a7da39', endColorstr='#6a9211');
 }
 .symfony-button-green:hover{background: #93aca7;}
+
+.symfony-button-team
+{
+  background-color: orange;
+}
+
+.symfony-button-skills
+{
+  background-color: #536c53;
+}
 
 .symfony-blocks-welcome
 {
@@ -343,4 +357,10 @@ td.level4 /*brown*/
 {
   background-color: #164450;
   color: white;
+}
+
+td.subrow
+{
+  color: white;
+  background-color: #164450;
 }

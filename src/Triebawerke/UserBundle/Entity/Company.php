@@ -54,12 +54,12 @@ class Company
     private $web;
     
     /**
-     * @ORM\OneToMany(targetEntity="User", mappedBy="company")
+     * @ORM\ManyToMany(targetEntity="Triebawerke\UserBundle\Entity\User", mappedBy="company")
      */
     protected $users;
     
     /**
-     * @ORM\OneToMany(targetEntity="Team", mappedBy="company")
+     * @ORM\OneToMany(targetEntity="Triebawerke\UserBundle\Entity\Team", mappedBy="company")
      */
     protected $teams;
     
@@ -166,9 +166,21 @@ class Company
     {
         return $this->users;
     }
+    
+    /**
+     * Get teams
+     *
+     * @return team object 
+     */
+    public function getTeams()
+    {
+        return $this->teams;
+    }
      
     public function __toString()
     {
       return $this->name;
     }
+    
+    
 }

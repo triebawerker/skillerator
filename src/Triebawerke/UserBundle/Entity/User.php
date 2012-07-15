@@ -64,17 +64,8 @@ class User implements AdvancedUserInterface, \Serializable
     protected $termsAccepted;
     
     /**
-     * @var int $company_id
-     *
-     * @ORM\Column(name="company_id", type="integer")
-     * 
-     */
-    protected $company_id;
-    
-    /**
     * @var object $company
-    * @ORM\ManyToOne(targetEntity="Triebawerke\UserBundle\Entity\Company", inversedBy="users", cascade={"persist"})
-    * @ORM\JoinColumn(name="company_id", referencedColumnName="id")    
+    * @ORM\ManyToMany(targetEntity="Triebawerke\UserBundle\Entity\Company", inversedBy="users")    
     */
     protected $company;    
     
@@ -85,7 +76,7 @@ class User implements AdvancedUserInterface, \Serializable
     protected $groups;
     
     /**
-     * @var Array Collection $groups
+     * @var Array Collection $teams
      * @ORM\ManyToMany(targetEntity="Team", inversedBy="users")
      */
     protected $teams;
@@ -100,6 +91,7 @@ class User implements AdvancedUserInterface, \Serializable
       $this->usersSkills = new ArrayCollection();
       $this->groups = new ArrayCollection();
       $this->teams = new ArrayCollection();
+      $this->company = new ArrayCollection();
       $this->isActive = true;
       $this->salt = md5(time());
     }
@@ -109,21 +101,11 @@ class User implements AdvancedUserInterface, \Serializable
       return $this->company;
     }
     
-    public function setCompany(Company $company = null)
+    public function addCompany(Company $company = null)
     {
-      $this->company = $company;
+      $this->company[] = $company;
     }
     
-     public function getCompany_Id()
-    {
-      return $this->company_id;
-    }
-    
-    public function setCompany_Id(Company $company_id = null)
-    {
-      $this->company_id = $company_id;
-    }
-
     /**
      * Get id
      *
@@ -197,26 +179,6 @@ class User implements AdvancedUserInterface, \Serializable
     public function __toString()
     {
         return $this->username;
-    }
-
-    /**
-     * Set company_id
-     *
-     * @param integer $companyId
-     */
-    public function setCompanyId($companyId)
-    {
-        $this->company_id = $companyId;
-    }
-
-    /**
-     * Get company_id
-     *
-     * @return integer 
-     */
-    public function getCompanyId()
-    {
-        return $this->company_id;
     }
 
     /**

@@ -44,14 +44,17 @@
                <ul id="menu">
                     {% block content_header_more %}
                         <li><a class="symfony-button-green" href="{{ path('_welcome') }}">Home</a></li>
+                        <li><a class="symfony-button-green" href="{{ path('_home_contact') }}">Impress</a></li>
                         <li><a class="symfony-button-green" href="{{ path('userskills') }}">My skills</a></li>
                         <li><a class="symfony-button-green" href="{{ path('user') }}">My Account</a></li>
-                        <li><a class="symfony-button-green" href="{{ path('_home_contact') }}">Impress</a></li>
+                        
                         
                         {% if is_granted("ROLE_ADMIN") %}
-                          <li><a class="symfony-button-green" href="{{ path('_skills') }}">Skills</a></li>
-                          <li><a class="symfony-button-green" href="{{ path('_level') }}">Level</a></li>                        
-                          <li><a class="symfony-button-green" href="{{ path('certificate') }}">Certificate</a></li>
+                          <li><a class="symfony-button-skills" href="{{ path('_skills') }}">Skills</a></li>
+                          <li><a class="symfony-button-skills" href="{{ path('_level') }}">Level</a></li>                        
+                          <li><a class="symfony-button-skills" href="{{ path('certificate') }}">Certificate</a></li>
+                          <li><a class="symfony-button-team" href="{{ path('company') }}">Company</a></li>
+                          <li><a class="symfony-button-team" href="{{ path('team') }}">Team</a></li>
                         {% endif %}
                     {% endblock %}
                 </ul>

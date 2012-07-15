@@ -24,11 +24,13 @@ class CompanyController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getEntityManager();
+      
+          $user = $this->get('security.context')->getToken()->getUser();
+      
+          $em = $this->getDoctrine()->getEntityManager();
+          $entities = $em->getRepository('TriebawerkeUserBundle:User')->find($user->getId());
 
-        $entities = $em->getRepository('TriebawerkeUserBundle:Company')->findAll();
-
-        return array('entities' => $entities);
+          return array('entities' => $entities);
     }
 
     /**
@@ -41,7 +43,7 @@ class CompanyController extends Controller
     {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $entity = $em->getRepository('TriebawerkerUseBundle:Company')->find($id);
+        $entity = $em->getRepository('TriebawerkeUserBundle:Company')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Company entity.');
