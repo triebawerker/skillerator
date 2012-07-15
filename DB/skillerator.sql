@@ -29,7 +29,7 @@ CREATE TABLE `Company` (
   `city` varchar(100) NOT NULL,
   `web` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `Company` (
 
 LOCK TABLES `Company` WRITE;
 /*!40000 ALTER TABLE `Company` DISABLE KEYS */;
-INSERT INTO `Company` VALUES (1,'Mayflower GmbH','Manhardtstrasse','Munich','www.mayflower.de'),(2,'Barff','Weinstrasse','Munich','www.barff.de'),(3,'triebawerke','leon','muc','annetrieba.de'),(4,'Rupprecht-Gymnasium','Albrechtstr.','muc','www.abc.de');
+INSERT INTO `Company` VALUES (1,'Mayflower GmbH','Manhardtstrasse','Munich','www.mayflower.de'),(2,'Barff','Weinstrasse','Munich','www.barff.de'),(3,'triebawerke','leon','muc','annetrieba.de'),(4,'Rupprecht-Gymnasium','Albrechtstr.','muc','www.abc.de'),(5,'Triebawerke','Leonrodstrasse 34','80636 Muenchen','www.e-gestaltung.de');
 /*!40000 ALTER TABLE `Company` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -54,7 +54,7 @@ CREATE TABLE `certificate` (
   `name` varchar(100) NOT NULL,
   `description` longtext NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -84,7 +84,7 @@ CREATE TABLE `goal` (
   KEY `IDX_5CEE441099223FFD` (`certificate_id`),
   CONSTRAINT `FK_5CEE44105FB14BA7` FOREIGN KEY (`level_id`) REFERENCES `level` (`id`),
   CONSTRAINT `FK_5CEE441099223FFD` FOREIGN KEY (`certificate_id`) REFERENCES `certificate` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -93,7 +93,7 @@ CREATE TABLE `goal` (
 
 LOCK TABLES `goal` WRITE;
 /*!40000 ALTER TABLE `goal` DISABLE KEYS */;
-INSERT INTO `goal` VALUES (1,2,4,'default'),(2,3,3,'testtest'),(3,3,1,'blub'),(4,4,1,'huhu'),(9,1,2,'dudu'),(10,4,1,'This will take some years'),(11,3,3,'dada'),(12,2,2,'Write your comment'),(13,2,4,'Write your comment'),(14,2,4,'Write your comment'),(15,3,2,'Write your comment'),(16,8,4,'Default goal'),(17,8,4,'Default goal'),(18,3,1,'Until 2013'),(19,8,4,'Write your comment'),(20,8,4,'Default goal'),(23,8,4,'Default goal'),(24,8,4,'Default goal'),(25,8,4,'Default goal'),(26,8,4,'Default goal'),(27,8,4,'Default goal'),(28,8,4,'Default goal'),(29,3,1,'Default goal'),(30,8,4,'Default goal'),(31,8,4,'Default goal'),(32,8,4,'Default goal'),(33,8,4,'Default goal'),(34,8,4,'Default goal'),(35,8,4,'Default goal'),(36,1,1,'Default goal for new user skill'),(37,1,1,'Default goal for new user skill'),(38,8,4,'Default goal'),(39,8,4,'Default goal'),(40,8,4,'Default goal'),(41,8,4,'Default goal'),(42,8,4,'Default goal for new user skill'),(43,1,2,'Default goal'),(44,4,3,'test with new goal'),(45,8,4,'Default goal'),(46,8,4,'Default goal'),(47,2,4,'Default goal'),(48,2,4,'Default goal'),(49,2,4,'Default goal'),(50,3,4,'Until summer 2013'),(51,2,4,'Default goal'),(52,2,3,'Default goal');
+INSERT INTO `goal` VALUES (1,2,4,'default'),(2,3,3,'testtest'),(3,3,1,'blub'),(4,4,1,'huhu'),(9,1,2,'dudu'),(10,4,1,'This will take some years'),(11,3,3,'dada'),(12,2,2,'Write your comment'),(13,2,4,'Write your comment'),(14,2,4,'Write your comment'),(15,3,2,'Write your comment'),(16,8,4,'Default goal'),(17,8,4,'Default goal'),(18,3,1,'Until 2013'),(19,8,4,'Write your comment'),(20,8,4,'Default goal'),(23,8,4,'Default goal'),(24,8,4,'Default goal'),(25,8,4,'Default goal'),(26,8,4,'Default goal'),(27,8,4,'Default goal'),(28,8,4,'Default goal'),(29,3,1,'Default goal'),(30,8,4,'Default goal'),(31,8,4,'Default goal'),(32,8,4,'Default goal'),(33,8,4,'Default goal'),(34,8,4,'Default goal'),(35,8,4,'Default goal'),(36,1,1,'Default goal for new user skill'),(37,1,1,'Default goal for new user skill'),(38,8,4,'Default goal'),(39,8,4,'Default goal'),(40,8,4,'Default goal'),(41,8,4,'Default goal'),(42,8,4,'Default goal for new user skill'),(43,1,2,'Default goal'),(44,4,3,'test with new goal'),(45,8,4,'Default goal'),(46,8,4,'Default goal'),(47,2,4,'Default goal'),(48,2,4,'Default goal'),(49,2,4,'Default goal'),(50,3,4,'Until summer 2013'),(51,2,4,'Default goal'),(52,2,3,'Default goal'),(53,8,4,'Default goal'),(54,8,4,'Default goal'),(55,8,4,'Default goal'),(56,8,4,'Default goal'),(57,8,4,'Default goal'),(58,8,4,'Default goal');
 /*!40000 ALTER TABLE `goal` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -160,7 +160,7 @@ CREATE TABLE `skill` (
   `name` varchar(100) NOT NULL,
   `description` longtext NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -169,8 +169,36 @@ CREATE TABLE `skill` (
 
 LOCK TABLES `skill` WRITE;
 /*!40000 ALTER TABLE `skill` DISABLE KEYS */;
-INSERT INTO `skill` VALUES (1,'PHP','Embedded scripting Language.'),(2,'Ruby','Script language'),(3,'Java','OOP Language'),(4,'JavaScript','Script Language'),(5,'Apache','Webserver zxc'),(6,'Redis','Persistable cache with many functions'),(7,'Jenkins','CI/CD Management'),(8,'C','C is a functional language'),(9,'none','Default value'),(10,'Typo3','CMS'),(11,'Mysql','RDBMS persistance');
+INSERT INTO `skill` VALUES (1,'PHP','Embedded scripting Language.'),(2,'Ruby','Script language'),(3,'Java','OOP Language'),(4,'JavaScript','Script Language'),(5,'Apache','Webserver zxc'),(6,'Redis','Persistable cache with many functions'),(7,'Jenkins','CI/CD Management'),(8,'C','C is a functional language'),(9,'none','Default value'),(10,'Typo3','CMS'),(11,'Mysql','RDBMS persistance'),(12,'C++','statically typed, free-form, multi-paradigm, compiled, general-purpose programming language');
 /*!40000 ALTER TABLE `skill` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `team`
+--
+
+DROP TABLE IF EXISTS `team`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `team` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `company_id` int(11) DEFAULT NULL,
+  `name` varchar(100) NOT NULL,
+  `nickname` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_C4E0A61F979B1AD6` (`company_id`),
+  CONSTRAINT `FK_C4E0A61F979B1AD6` FOREIGN KEY (`company_id`) REFERENCES `Company` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `team`
+--
+
+LOCK TABLES `team` WRITE;
+/*!40000 ALTER TABLE `team` DISABLE KEYS */;
+INSERT INTO `team` VALUES (1,1,'DLSi','King of the Mongo'),(2,2,'sendeasy','sendeasy');
+/*!40000 ALTER TABLE `team` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -182,16 +210,13 @@ DROP TABLE IF EXISTS `user`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `company_id` int(11) NOT NULL,
   `password` varchar(50) NOT NULL,
   `salt` varchar(32) NOT NULL,
   `is_active` tinyint(1) NOT NULL,
   `username` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `IDX_8D93D649979B1AD6` (`company_id`),
-  CONSTRAINT `FK_8D93D649979B1AD6` FOREIGN KEY (`company_id`) REFERENCES `Company` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -200,8 +225,36 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (3,3,'1071e17e4fd5c093112c92accd0b631303a58802','fdc1b017ebef946903d2188d1316f3e6',1,'admin','trieba@e-gestaltung.de'),(4,1,'04845a99305bef1e2a6a76e348d449b6a3fad852','bc93eee8269804193c0fd4f5d191ab69',1,'joseph','joseph@e-gestaltung.de'),(5,1,'0f538a79fc1efd7bdf1d1a2c4a30e49c6643ace2','1dd5f999dcb8f61abfcb198e266ce948',1,'ida','ida-marie@e-gestaltung.de'),(6,1,'879b4be46d70137692f6ff12ceff67a0f3f50d7a','aae8cb4f28719f12b7f1e89f2010558d',1,'micha','trieba@e-gestaltung.de');
+INSERT INTO `user` VALUES (3,'1071e17e4fd5c093112c92accd0b631303a58802','fdc1b017ebef946903d2188d1316f3e6',1,'admin','trieba@e-gestaltung.de'),(4,'04845a99305bef1e2a6a76e348d449b6a3fad852','bc93eee8269804193c0fd4f5d191ab69',1,'joseph','joseph@e-gestaltung.de'),(5,'0f538a79fc1efd7bdf1d1a2c4a30e49c6643ace2','1dd5f999dcb8f61abfcb198e266ce948',1,'ida','ida-marie@e-gestaltung.de'),(6,'879b4be46d70137692f6ff12ceff67a0f3f50d7a','aae8cb4f28719f12b7f1e89f2010558d',1,'micha','trieba@e-gestaltung.de'),(7,'acd3d77ef5288cfa5b854dbff67512c3fc6017bc','fee2e9bef266df01a1df7189f6e7323a',1,'Paul','paul.guhle@mayflower.de'),(8,'0d4658d739983616c24b16566058a851f5cf50cd','abb6909e6de525e62332aa7120561ccc',1,'johann','johann.hartmann@mayflower.de');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user_company`
+--
+
+DROP TABLE IF EXISTS `user_company`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user_company` (
+  `user_id` int(11) NOT NULL,
+  `company_id` int(11) NOT NULL,
+  PRIMARY KEY (`user_id`,`company_id`),
+  KEY `IDX_17B21745A76ED395` (`user_id`),
+  KEY `IDX_17B21745979B1AD6` (`company_id`),
+  CONSTRAINT `FK_17B21745979B1AD6` FOREIGN KEY (`company_id`) REFERENCES `Company` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_17B21745A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_company`
+--
+
+LOCK TABLES `user_company` WRITE;
+/*!40000 ALTER TABLE `user_company` DISABLE KEYS */;
+INSERT INTO `user_company` VALUES (3,1),(3,2),(6,1),(7,1),(8,1);
+/*!40000 ALTER TABLE `user_company` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -228,7 +281,7 @@ CREATE TABLE `user_groups` (
 
 LOCK TABLES `user_groups` WRITE;
 /*!40000 ALTER TABLE `user_groups` DISABLE KEYS */;
-INSERT INTO `user_groups` VALUES (3,1),(3,2),(4,1),(5,1),(6,1);
+INSERT INTO `user_groups` VALUES (3,1),(3,2),(4,1),(5,1),(6,1),(7,1),(8,1);
 /*!40000 ALTER TABLE `user_groups` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -257,7 +310,7 @@ CREATE TABLE `user_skill` (
   CONSTRAINT `FK_BCFF1F2F99223FFD` FOREIGN KEY (`certificate_id`) REFERENCES `certificate` (`id`),
   CONSTRAINT `FK_DAD698E067B3B43D` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
   CONSTRAINT `FK_DAD698E07FF61858` FOREIGN KEY (`skill_id`) REFERENCES `skill` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -266,8 +319,36 @@ CREATE TABLE `user_skill` (
 
 LOCK TABLES `user_skill` WRITE;
 /*!40000 ALTER TABLE `user_skill` DISABLE KEYS */;
-INSERT INTO `user_skill` VALUES (5,3,1,1,4,19),(6,3,6,2,4,2),(11,3,8,3,4,3),(12,3,4,1,4,14),(13,3,2,1,1,13),(14,3,2,2,1,12),(15,3,8,3,1,10),(17,3,1,1,1,16),(23,3,11,1,1,25),(24,3,11,1,1,26),(25,3,11,1,1,27),(26,3,10,1,1,28),(27,3,1,2,1,29),(28,3,1,1,1,30),(31,3,1,1,1,33),(32,3,1,1,1,42),(33,3,1,1,1,36),(35,3,1,1,1,38),(36,3,1,1,1,39),(37,3,1,2,1,40),(38,3,1,1,1,41),(39,3,1,1,1,43),(40,3,1,1,1,45),(41,3,1,1,1,46),(42,3,1,1,1,47),(43,3,1,1,1,48),(44,4,1,1,1,49),(45,4,3,2,4,50),(46,6,1,1,4,51),(47,6,11,1,2,52);
+INSERT INTO `user_skill` VALUES (6,3,1,2,1,2),(12,3,11,1,4,14),(26,3,2,1,4,28),(44,4,1,1,1,49),(45,4,3,2,4,50),(46,6,1,4,4,51),(47,6,11,1,2,52),(48,7,3,3,4,53),(49,7,8,2,4,54),(50,7,12,2,4,55),(51,8,5,4,4,56),(52,8,11,4,4,57),(53,8,1,3,4,58);
 /*!40000 ALTER TABLE `user_skill` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user_team`
+--
+
+DROP TABLE IF EXISTS `user_team`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user_team` (
+  `user_id` int(11) NOT NULL,
+  `team_id` int(11) NOT NULL,
+  PRIMARY KEY (`user_id`,`team_id`),
+  KEY `IDX_BE61EAD6A76ED395` (`user_id`),
+  KEY `IDX_BE61EAD6296CD8AE` (`team_id`),
+  CONSTRAINT `FK_BE61EAD6296CD8AE` FOREIGN KEY (`team_id`) REFERENCES `team` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_BE61EAD6A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_team`
+--
+
+LOCK TABLES `user_team` WRITE;
+/*!40000 ALTER TABLE `user_team` DISABLE KEYS */;
+INSERT INTO `user_team` VALUES (3,1),(7,1);
+/*!40000 ALTER TABLE `user_team` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -279,4 +360,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-07-10 22:34:28
+-- Dump completed on 2012-07-15 22:12:50
