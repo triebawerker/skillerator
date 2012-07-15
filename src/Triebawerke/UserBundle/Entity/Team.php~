@@ -1,0 +1,47 @@
+<?php
+namespace Triebawerke\UserBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+
+/**
+ * Description of Team
+ *
+ * @author micha
+ */
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="team")
+ */
+class Team {
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")  
+     */
+    protected $id;
+    
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    protected $name;
+    
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    protected $nickname;
+    
+  /**
+    * @ORM\ManyToMany(targetEntity="User", mappedBy="teams")
+    */
+    protected $users;
+    
+   /**
+    * @ORM\ManyToOne(targetEntity="Triebawerke\UserBundle\Entity\Company", inversedBy="teams", cascade={"persist"})
+    */
+    protected $company;
+
+}
+
+?>

@@ -1,8 +1,6 @@
-{% extends 'TriebawerkeUserBundle::layout.html.twig' %}
+{% extends "TriebawerkeSkilleratorBundle::layout.html.twig" %}
 
 {% block title %}Skillerator{% endblock %}
-
-{% block content_header '' %}
 
 {% block content %}
 <h1>Company list</h1>
@@ -15,8 +13,8 @@
             <th>Street</th>
             <th>City</th>
             <th>Web</th>
-            <th>users</th>
             <th>Actions</th>
+            <th>&nbsp;</th>
         </tr>
     </thead>
     <tbody>
@@ -27,16 +25,11 @@
             <td>{{ entity.street }}</td>
             <td>{{ entity.city }}</td>
             <td>{{ entity.web }}</td>
-            <td>{{ entity.users.name }}</td>
             <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('company_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('company_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
+                <a href="{{ path('company_show', { 'id': entity.id }) }}">show</a>
+            </td>
+            <td>
+                <a href="{{ path('company_edit', { 'id': entity.id }) }}">edit</a>
             </td>
         </tr>
     {% endfor %}

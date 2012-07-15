@@ -84,13 +84,22 @@ class User implements AdvancedUserInterface, \Serializable
      */
     protected $groups;
     
+    /**
+     * @var Array Collection $groups
+     * @ORM\ManyToMany(targetEntity="Team", inversedBy="users")
+     */
+    protected $teams;
+    
    /**
     * @ORM\OneToMany(targetEntity="Triebawerke\SkilleratorBundle\Entity\UserSkills", mappedBy="users")
-    */    
+    */  
+    protected $userSkills;
+       
     public function __construct()
     {
       $this->usersSkills = new ArrayCollection();
       $this->groups = new ArrayCollection();
+      $this->teams = new ArrayCollection();
       $this->isActive = true;
       $this->salt = md5(time());
     }
@@ -323,6 +332,26 @@ class User implements AdvancedUserInterface, \Serializable
     public function getGroups()
     {
         return $this->groups;
+    }
+    
+    /**
+     * Add groups
+     *
+     * @param Triebawerke\UserBundle\Entity\Groups $groups
+     */
+    public function addTeam(\Triebawerke\UserBundle\Entity\Team $team)
+    {
+        $this->groups[] = $team;
+    }
+
+    /**
+     * Get groups
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getTeam()
+    {
+        return $this->team;
     }
     
     public function getTermsAccepted()

@@ -11,7 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Triebawerke\UserBundle\Entity\CompanyRepository")
- * @ORM\OneToMany(targetEntity="Triebawerke\UserBundle\User", mappedBy="company")
+ * 
  */
 class Company
 {
@@ -53,11 +53,22 @@ class Company
      */
     private $web;
     
+    /**
+     * @ORM\OneToMany(targetEntity="User", mappedBy="company")
+     */
     protected $users;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Team", mappedBy="company")
+     */
+    protected $teams;
+    
+
 
     public function __construct()
     {
         $this->users = new ArrayCollection();
+        $this->teams = new ArrayCollection();
     }
 
 

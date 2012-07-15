@@ -2,12 +2,10 @@
 
 {% block title %}Skillerator{% endblock %}
 
-{% block content_header '' %}
-
 {% block content %}
-<h1>Company creation</h1>
+<h1>Team creation</h1>
 
-<form action="{{ path('company_create') }}" method="post" {{ form_enctype(form) }}>
+<form action="{{ path('team_create') }}" method="post" {{ form_enctype(form) }}>
     {{ form_widget(form) }}
     <p>
         <button type="submit">Create</button>
@@ -16,7 +14,7 @@
 
 <ul class="record_actions">
     <li>
-        <a href="{{ path('company') }}">
+        <a href="{{ path('team') }}">
             Back to the list
         </a>
     </li>

@@ -144,32 +144,59 @@ user_update:
      
 company:
     pattern:      /company
-    defaults:     { _controller: TriebawerkeSkilleratorBundle:Company:index}        
+    defaults:     { _controller: TriebawerkeUserBundle:Company:index}        
     
 company_show:
     pattern:      /company/show/{id}
-    defaults:     { _controller: TriebawerkeSkilleratorBundle:Company:show}
+    defaults:     { _controller: TriebawerkeUserBundle:Company:show}
     
 company_edit:
     pattern:      /company/edit/{id}
-    defaults:     { _controller: TriebawerkeSkilleratorBundle:Company:edit}
+    defaults:     { _controller: TriebawerkeUserBundle:Company:edit}
     
 company_create:
     pattern:      /company/create
-    defaults:     { _controller: TriebawerkeSkilleratorBundle:Company:create}
+    defaults:     { _controller: TriebawerkeUserBundle:Company:create}
 
 company_new:
     pattern:      /company/new
-    defaults:     { _controller: TriebawerkeSkilleratorBundle:Company:new} 
+    defaults:     { _controller: TriebawerkeUserBundle:Company:new} 
 
 company_delete:
     pattern:      /company/delete
-    defaults:     { _controller: TriebawerkeSkilleratorBundle:Company:delete}      
+    defaults:     { _controller: TriebawerkeUserBundle:Company:delete}      
 
 company_update:
     pattern:      /company/update/{id}
-    defaults:     { _controller: TriebawerkeSkilleratorBundle:Company:update}     
+    defaults:     { _controller: TriebawerkeUserBundle:Company:update}     
 
+team:
+    pattern:      /team
+    defaults:     { _controller: TriebawerkeUserBundle:Team:index}        
+    
+team_show:
+    pattern:      /team/show/{id}
+    defaults:     { _controller: TriebawerkeUserBundle:Team:show}
+    
+team_edit:
+    pattern:      /team/edit/{id}
+    defaults:     { _controller: TriebawerkeUserBundle:Team:edit}
+    
+team_create:
+    pattern:      /team/create
+    defaults:     { _controller: TriebawerkeUserBundle:Team:create}
+
+team_new:
+    pattern:      /team/new
+    defaults:     { _controller: TriebawerkeUserBundle:Team:new} 
+
+team_delete:
+    pattern:      /team/delete
+    defaults:     { _controller: TriebawerkeUserBundle:Team:delete}      
+
+team_update:
+    pattern:      /team/update/{id}
+    defaults:     { _controller: TriebawerkeUserBundle:Team:update} 
 
 goal:
     pattern:      /goal

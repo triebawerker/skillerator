@@ -2,10 +2,8 @@
 
 {% block title %}Skillerator{% endblock %}
 
-{% block content_header '' %}
-
 {% block content %}
-<h1>Company</h1>
+<h1>Team</h1>
 
 <table class="record_properties">
     <tbody>
@@ -18,34 +16,25 @@
             <td>{{ entity.name }}</td>
         </tr>
         <tr>
-            <th>Street</th>
-            <td>{{ entity.street }}</td>
-        </tr>
-        <tr>
-            <th>City</th>
-            <td>{{ entity.city }}</td>
-        </tr>
-        <tr>
-            <th>Web</th>
-            <td>{{ entity.web }}</td>
+            <th>Nickname</th>
+            <td>{{ entity.nickname }}</td>
         </tr>
     </tbody>
 </table>
-</ul>
 
 <ul class="record_actions">
     <li>
-        <a href="{{ path('company') }}">
+        <a href="{{ path('team') }}">
             Back to the list
         </a>
     </li>
     <li>
-        <a href="{{ path('company_edit', { 'id': entity.id }) }}">
+        <a href="{{ path('team_edit', { 'id': entity.id }) }}">
             Edit
         </a>
     </li>
     <li>
-        <form action="{{ path('company_delete', { 'id': entity.id }) }}" method="post">
+        <form action="{{ path('team_delete', { 'id': entity.id }) }}" method="post">
             {{ form_widget(delete_form) }}
             <button type="submit">Delete</button>
         </form>
